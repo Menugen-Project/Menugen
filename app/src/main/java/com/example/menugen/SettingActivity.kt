@@ -27,6 +27,11 @@ class SettingActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
+        binding.morning.setOnClickListener{
+            val intent = Intent(this, Management1Activity::class.java)
+            startActivity(intent)
+        }
+
         // 버튼 클릭을 통한 Management1 액티비티로 이동
         binding.btnManagement1.setOnClickListener {
             val intent = Intent(this, Management1Activity::class.java)

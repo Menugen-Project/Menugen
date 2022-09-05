@@ -53,11 +53,7 @@ class SurveyActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                if (position != 0) Toast.makeText(
-                    this@SurveyActivity,
-                    sex_itemList[position],
-                    Toast.LENGTH_SHORT
-                ).show()
+                if (position != 0) Toast.makeText(this@SurveyActivity, sex_itemList[position], Toast.LENGTH_SHORT).show()
 
                 // 사용자가 선택한 성별을 남자=1, 여자=2로 변환해서 서버로 전송
                 if(position != 0){

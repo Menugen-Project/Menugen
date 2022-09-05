@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Management1Activity">
@@ -63,58 +62,60 @@
 
 <!--                    소메뉴 선택을 위한 대,중분류 spinner-->
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_width="350dp"
+                        android:layout_height="88dp"
                         android:layout_gravity="center"
-                        android:layout_margin="15dp">
+                        android:layout_margin="15dp"
+                        android:orientation="vertical">
 
-<!--                        대분류 선택-->
+                        <!--                        대분류 선택-->
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="60dp"
+
                             android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="30dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="대분류"
-                                android:textSize="20dp"
+                                android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textAlignment="center"/>
+                                android:textSize="20dp" />
+
                             <Spinner
                                 android:id="@+id/largeMenu_spinner"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:spinnerMode="dropdown"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:spinnerMode="dropdown" />
                         </LinearLayout>
 
-<!--                        중분류 선택-->
+                        <!--                        중분류 선택 -->
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="30dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="중분류"
-                                android:textSize="20dp"
+                                android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textAlignment="center"/>
+                                android:textSize="20dp" />
+
                             <Spinner
                                 android:id="@+id/middleMenu_spinner"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:spinnerMode="dropdown"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:spinnerMode="dropdown" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -173,11 +174,15 @@
                         android:layout_height="120dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/edge"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
 <!--                        사용자가 선택한 음식이 뜨는 곳-->
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/finallist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/finalfood"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </LinearLayout>
@@ -192,6 +197,13 @@
                     android:text="식단 저장하기"
                     android:layout_gravity="center"
                     android:layout_margin="15dp"/>
+
+                <!--                빈 공간 커버-->
+                <LinearLayout
+                    android:id="@+id/empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"></LinearLayout>
 
             </LinearLayout>
         </ScrollView>
