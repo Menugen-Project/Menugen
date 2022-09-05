@@ -4,7 +4,9 @@ import android.content.Intent
 import android.icu.text.IDNA
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.room.Room
 import com.example.menugen.databinding.ActivityInfoBinding
 import com.example.menugen.databinding.ActivityRecommendBinding
 import com.example.menugen.databinding.ActivitySettingBinding
@@ -20,6 +22,7 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_setting)
+
 
         // 달력버튼을 눌러 날짜별 설정 (예정...? 끝낼수 있을까...)
 //        binding.btnCalendar.setOnClickListener {

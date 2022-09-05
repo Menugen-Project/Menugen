@@ -54,7 +54,6 @@ class RVAdapter(val items:MutableList<String>) : RecyclerView.Adapter<RVAdapter.
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-
         /*
         private val manage = Management1Activity.getInstance()
         var mMember: Member?=null
@@ -62,11 +61,14 @@ class RVAdapter(val items:MutableList<String>) : RecyclerView.Adapter<RVAdapter.
 
         init{
             itemView.addbtn.setOnClickListener{
-
             }
         }
          */
 
+        // DB 연결
+//        val db = Room.databaseBuilder(
+//            App.instance, AppDatabase::class.java, "database"
+//        ).allowMainThreadQueries().build()
 
         fun bindItem(item : String){
             val rv_text = itemView.findViewById<TextView>(R.id.rvItem)

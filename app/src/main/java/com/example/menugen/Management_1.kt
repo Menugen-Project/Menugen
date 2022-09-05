@@ -26,24 +26,26 @@ class Management1Activity : AppCompatActivity() {
     // 데이터 바인딩
     private lateinit var binding: ActivityManagement1Binding
     private lateinit var adapter: RVAdapter
-
+    private lateinit var adapter2: RV2Adapter
 
     private var items = mutableListOf<String>()
     private var items2 = mutableListOf<String>()
 
-    var db : AppDatabase?=null
-
-    companion object{
-        private var instance:MainActivity? = null
-        fun getInstance(): MainActivity? {
-            return instance
-        }
-    }
+//    var db : AppDatabase?=null
+//
+//    companion object{
+//        private var instance:MainActivity? = null
+//        fun getInstance(): MainActivity? {
+//            return instance
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_management1)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_management1)
+
+//        Log.d("로그","${db?.dao()?.getTitle().toString()}")
 
         // 서버 연동코드 <---
         val url = "http://220.149.236.48:27017/"
@@ -54,41 +56,27 @@ class Management1Activity : AppCompatActivity() {
         var server = retrofit.create(JoinService::class.java)
         // <---
 
-
-
         // 뷰모델 선언 및 연결
         // val userViewModel = ViewModelProvider(this,UserViewModel.Factory(application)).get(UserViewModel::class.java)
 
-
-
+        // 어댑터 연결
         adapter = RVAdapter(items)
+        adapter2 = RV2Adapter(items)
+        binding.finallist.adapter = adapter2
 
-        /*
+        /*//<---
         binding.finallist.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        binding.finallist.adapter = adapter
 
         adapter.setItemClickListener(object : RVAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 Toast.makeText(this@Management1Activity, "제발요", Toast.LENGTH_SHORT).show()
             }
-        })
-         */
+        }) */
 
         // DB 연결
         val db = Room.databaseBuilder(
             applicationContext, AppDatabase::class.java, "database"
         ).allowMainThreadQueries().build()
-
-        // DB 내용 삭제
-        db.dao().getAll().observe(this, Observer { todos ->
-            var todo = todos.toString()
-            Toast.makeText(this@Management1Activity, todo, Toast.LENGTH_SHORT).show()
-            if (todo == null){
-                db.dao().deleteAllUsers()
-                db.dao().deleteAllUsers()
-            }
-        })
 
 
 
@@ -140,22 +128,51 @@ class Management1Activity : AppCompatActivity() {
             }
 
 
-        val final_list = intent.getStringExtra("list").toString()
-        // items2.add(final_list)
+        val f_list = intent.getStringExtra("list")
 
-        db.dao().insert(Entity(final_list))
+        var final_list = ""
+        if (f_list != null){
+            final_list = f_list.toString()
+            Log.d("범인 검거","${db?.dao()?.getTitle().toString()}, $final_list")
+        }
 
         // db에 저장된 데이터 불러오기
-        db.dao().getAll().observe(this, Observer { todos ->
-            //binding.finalfood.text = todos.toString()
-            items2.add(todos.toString())
+//        db.dao().getAll().observe(this, Observer { todos ->
+//            //binding.finalfood.text = todos.toString()
+//            items2.add(todos.toString())
+//
+//            val recycler = findViewById<RecyclerView>(R.id.finallist)
+//            val rvAdapter = RVAdapter(items2)
+//            recycler.adapter = rvAdapter
+//
+//            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+//        })
 
-            val recycler = findViewById<RecyclerView>(R.id.finallist)
-            val rvAdapter = RVAdapter(items2)
-            recycler.adapter = rvAdapter
+        if(db.dao().getTitle().isEmpty() == false){
+            var index = 0
+            while (index < db.dao().getTitle().size) {
+                val foodtext = db.dao().getTitle()[index]
+                items2.add(foodtext)
+                index++
+                Log.d("while 테스트", items2.toString())
+                // binding.finalfood.text = foodtext
+            }
+            // binding.finalfood.text = db.dao().getTitle().toString()
 
-            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
-        })
+            val recycler2 = findViewById<RecyclerView>(R.id.finallist)
+            val rv2Adapter = RV2Adapter(items2)
+            recycler2.adapter = rv2Adapter
+
+            recycler2.layoutManager = LinearLayoutManager(this@Management1Activity)
+        }
+
+/*
+        val recycler = findViewById<RecyclerView>(R.id.finallist)
+        val rv2Adapter = RV2Adapter(items2)
+        recycler.adapter = rv2Adapter
+
+        recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+ */
 
         /*
         val rvAdapter = RVAdapter(items)
@@ -190,8 +207,8 @@ class Management1Activity : AppCompatActivity() {
         // 목록 초기화 + 데이터 넘기기기
         binding.SettingFinBtn.setOnClickListener{
             db.dao().deleteAllUsers()
-            db.dao().deleteAllUsers()
             items2.clear()
+            Log.d("로그","delete후 : ${db?.dao()?.getTitle().toString()}")
 
             val recycler = findViewById<RecyclerView>(R.id.finallist)
             val rvAdapter = RVAdapter(items2)

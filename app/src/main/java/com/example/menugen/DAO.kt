@@ -6,11 +6,14 @@ import androidx.room.*
 @Dao
 interface DAO {
     // 데이터 베이스 불러오기
-    @Query("SELECT * from entity")
-    abstract fun getAll(): LiveData<List<Entity>>
+//    @Query("SELECT * from entity")
+//    abstract fun getAll(): LiveData<List<Entity>>
 
     @Update
     fun update(entity: Entity)
+
+    @Query("select title from entity")
+    fun getTitle(): List<String>
 
     // 데이터 베이스 추가
     @Insert
