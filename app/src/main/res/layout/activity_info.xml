@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         tools:context=".InfoActivity">
 
-<!-- 상단바-->
+        <!-- 상단바-->
         <LinearLayout
             android:id="@+id/top_bar"
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-<!-- 내정보-->
+        <!-- 내정보-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -113,9 +113,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:text="건강 관리를 위해"
-                            android:textSize="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="목표: 건강 관리를 위해\n키: 180cm\n체중: 75kg\n권장섭취칼로리: 1686kcal"
+                            android:textSize="16dp"
                             android:textStyle="italic" />
                     </LinearLayout>
                 </LinearLayout>
@@ -126,6 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="#EA5656"
                     app:cardCornerRadius="15dp">
@@ -140,54 +141,52 @@
                         android:textSize="15dp" />
                 </androidx.cardview.widget.CardView>
 
-                <ScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/info_box_corner"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/info_box_corner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/accountTermText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:padding="10dp"
-                                android:text="@string/accountTerm"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-<!--                        // 빈 공간 커버 (다른 곳과 달리 적용이 안됨)-->
-                        <LinearLayout
-                            android:id="@+id/empty"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-                        </LinearLayout>
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:scrollbars="vertical"
+                            android:text="@string/accountTerm"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
-                </ScrollView>
+
+                    <!--                        // 빈 공간 커버 (다른 곳과 달리 적용이 안됨)-->
+                    <LinearLayout
+                        android:id="@+id/empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"></LinearLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
         </ScrollView>
 
-<!-- 하단바 변경버젼 (weight 이용하여 width 3등분함)-->
+        <!-- 하단바 변경버젼 (weight 이용하여 width 3등분함)-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -197,7 +196,7 @@
             android:background="@drawable/navbar_top_stroke"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true">
-<!-- 1번: 식단 추천-->
+            <!-- 1번: 식단 추천-->
             <LinearLayout
                 android:id="@+id/btn_recommend"
                 android:layout_width="0dp"
@@ -218,7 +217,7 @@
                     android:textSize="15dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
-<!-- 2번: 식단 세팅-->
+            <!-- 2번: 식단 세팅-->
             <LinearLayout
                 android:id="@+id/btn_setting"
                 android:layout_width="0dp"
@@ -239,7 +238,7 @@
                     android:textSize="15dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
-<!-- 3번: 내 정보-->
+            <!-- 3번: 내 정보-->
             <LinearLayout
                 android:id="@+id/btn_info"
                 android:layout_width="0dp"

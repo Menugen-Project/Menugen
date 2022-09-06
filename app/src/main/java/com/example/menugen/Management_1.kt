@@ -64,15 +64,6 @@ class Management1Activity : AppCompatActivity() {
         adapter2 = RV2Adapter(items)
         binding.finallist.adapter = adapter2
 
-        /*//<---
-        binding.finallist.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        adapter.setItemClickListener(object : RVAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-                Toast.makeText(this@Management1Activity, "제발요", Toast.LENGTH_SHORT).show()
-            }
-        }) */
-
         // DB 연결
         val db = Room.databaseBuilder(
             applicationContext, AppDatabase::class.java, "database"
@@ -128,29 +119,33 @@ class Management1Activity : AppCompatActivity() {
             }
 
 
+        // 음식 목록에서 사용자가 선택한 음식에 대한 정보
         val f_list = intent.getStringExtra("list")
+        // 최종 선택 메뉴에서 사용자가 제거한 음식에 대한 정보
+        val f_final = intent.getStringExtra("final")
 
         var final_list = ""
+        // 사용자가 음식 목록에서 음식을 추가했을 때
         if (f_list != null){
             final_list = f_list.toString()
             db.dao().insert(Entity(f_list.toString()))
-            Log.d("범인 검거","${db?.dao()?.getTitle().toString()}, $final_list")
         }
 
-        // db에 저장된 데이터 불러오기
-//        db.dao().getAll().observe(this, Observer { todos ->
-//            //binding.finalfood.text = todos.toString()
-//            items2.add(todos.toString())
-//
-//            val recycler = findViewById<RecyclerView>(R.id.finallist)
-//            val rvAdapter = RVAdapter(items2)
-//            recycler.adapter = rvAdapter
-//
-//            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
-//        })
+        var del_list = ""
+        // 사용자가 최종 음식 목록에서 음식을 제거했을 때
+//        if (f_final != null){
+//            del_list = f_final.toString()
+//            db.dao().deleteUser(Entity(del_list))
+//        }
 
         if(db.dao().getTitle().isEmpty() == false){
             var index = 0
+
+//            if (f_final != null){
+//                del_list = f_final.toString()
+//                db.dao().deleteUser(Entity(del_list))
+//            }
+
             while (index < db.dao().getTitle().size) {
                 val foodtext = db.dao().getTitle()[index]
                 items2.add(foodtext)
@@ -167,83 +162,22 @@ class Management1Activity : AppCompatActivity() {
             recycler2.layoutManager = LinearLayoutManager(this@Management1Activity)
         }
 
-/*
-        val recycler = findViewById<RecyclerView>(R.id.finallist)
-        val rv2Adapter = RV2Adapter(items2)
-        recycler.adapter = rv2Adapter
-
-        recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
- */
-
-        /*
-        val rvAdapter = RVAdapter(items)
-        rvAdapter.setOnItemClickListener(object : RVAdapter.OnItemClickListener{
-            override fun onItemClick(v: View, items: List<String>) {
-                Toast.makeText(this@Management1Activity, "제발요", Toast.LENGTH_SHORT).show()
-                Log.d("제발", "gg")
-            }
-        })
-         */
-
-        /*
-        val recycler2 = findViewById<RecyclerView>(R.id.finallist)
-        val rvAdapter2 = RVAdapter(items2)
-        recycler2.adapter = rvAdapter2
-        */
-
-        /*
-        rvAdapter2.setOnItemClickListener(object : RVAdapter.OnItemClickListener{
-            override fun onItemClick(v: View, items: List<String>) {
-                val finallist = items.toString()
-                items2.add(finallist)
-                Toast.makeText(this@Management1Activity, "테스트", Toast.LENGTH_LONG).show()
-            }
-        })
-         */
-
-        // recycler2.layoutManager = LinearLayoutManager(this@Management1Activity)
-
-
-
-        // 목록 초기화 + 데이터 넘기기기
+        // DB 초기화 + 식단 저장 + 화면 전환(management1으로)
         binding.SettingFinBtn.setOnClickListener{
             db.dao().deleteAllUsers()
-            items2.clear()
-            Log.d("로그","delete후 : ${db?.dao()?.getTitle().toString()}")
 
             val recycler = findViewById<RecyclerView>(R.id.finallist)
             val rvAdapter = RVAdapter(items2)
             recycler.adapter = rvAdapter
 
             recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
-        }
 
-        // 하단바 각각 액티비티로 이동
-        binding.btnRecommend.setOnClickListener {
-            val intent = Intent(this, Recommend::class.java)
-            startActivity(intent)
+            val nextintent = Intent(this,SettingActivity::class.java)
+            nextintent.putExtra("user_morning", items2.toString())
+            Log.d("최종 음식목록 테스트", items2.toString())
+            items2.clear()
+            startActivity(nextintent)
         }
-        binding.btnSetting.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnInfo.setOnClickListener {
-            val intent = Intent(this, InfoActivity::class.java)
-            startActivity(intent)
-        }
-        // 버튼 클릭을 통한 Management1 액티비티로 이동
-//        binding.SettingFinBtn.setOnClickListener {
-//            val intent = Intent(this, Management1Activity::class.java)
-//            startActivity(intent)
-//        }
     }
-
-    fun OnItemClick(items: List<String>){
-        var lastlist: List<String> = items
-    }
-/*
-    fun addMember(member: Member, position: Int){
-        items[position]
-    }
- */
 }
+

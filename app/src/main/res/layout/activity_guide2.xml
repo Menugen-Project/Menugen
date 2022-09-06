@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Guide2Activity"
+        android:orientation="vertical">
+
+        <!--        상단바-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="#FFE4B5">
+            <ImageView
+                android:layout_marginStart="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/topimg"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MENUGEN"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="24dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/app_guide_setting_img"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="[식단관리] 페이지는요!"
+            android:textSize="30dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+
+        <!--    가이드 설명(식단관리)-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="농촌진흥청 국립농업과학원의 식품정보를\n 기반으로 여러분이 분류 선택을 통해\n 메뉴를 골라 원하는 식단을 구성할 수 있습니다 :)"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnFinishGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="가이드 마침!"
+            android:textSize="24dp"
+            android:layout_marginHorizontal="100dp"
+            android:backgroundTint="#FF7F00"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</layout>

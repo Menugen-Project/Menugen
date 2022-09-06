@@ -29,42 +29,28 @@ class RVAdapter(val items:MutableList<String>) : RecyclerView.Adapter<RVAdapter.
 
         // https://mechacat.tistory.com/7 <---
         // (1) 리스트 내 항목 클릭 시 onClick() 호출
-        holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position)
-        }
+//        holder.itemView.setOnClickListener {
+//            itemClickListener.onClick(it, position)
+//        }
     }
-
     // Activity로 값 가져가기
     // (2) 리스너 인터페이스
-    interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
-    }
+//    interface OnItemClickListener {
+//        fun onClick(v: View, position: Int)
+//    }
     // (3) 외부에서 클릭 시 이벤트 설정
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.itemClickListener = onItemClickListener
-    }
+//    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+//        this.itemClickListener = onItemClickListener
+//    }
     // (4) setItemClickListener로 설정한 함수 실행
-    private lateinit var itemClickListener : OnItemClickListener
+//    private lateinit var itemClickListener : OnItemClickListener
     // <---
-
-
 
     override fun getItemCount(): Int {
         return items.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        /*
-        private val manage = Management1Activity.getInstance()
-        var mMember: Member?=null
-        var mPosition: Int?=null
-
-        init{
-            itemView.addbtn.setOnClickListener{
-            }
-        }
-         */
-
         // DB 연결
 //        val db = Room.databaseBuilder(
 //            App.instance, AppDatabase::class.java, "database"
@@ -81,20 +67,11 @@ class RVAdapter(val items:MutableList<String>) : RecyclerView.Adapter<RVAdapter.
                 // db.dao().insert(Entity(edit.text.toString()))
 
                 // Activity로 사용자가 선택한 음식명 전달
-                val intent = Intent(itemView.context, Management1Activity::class.java)
-                intent.putExtra("list", foodlist)
-                itemView.context.startActivity(intent)
+                val rv1intent = Intent(itemView.context, Management1Activity::class.java)
+                rv1intent.putExtra("list", foodlist)
+                itemView.context.startActivity(rv1intent)
             }
         }
-
-        /*
-        // https://juahnpop.tistory.com/235
-        fun setData(member: Member,position: Int){
-            itemView.rvItem.text = member.name
-            this.mMember = member
-            this.mPosition = position
-        }
-         */
     }
 }
 

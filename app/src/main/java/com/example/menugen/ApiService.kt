@@ -52,3 +52,12 @@ public interface JoinService{
         //@Field("Udia") Udia:String
     ) : Call<Join>
 }
+
+// 사용자 식단 정보
+public interface ManageMorning{
+    @FormUrlEncoded
+    @POST("/users/signup")
+    fun requestMngMor(
+        @Field("UserFoodList") UserFoodList: List<String>
+    ) : Call<Join>
+}

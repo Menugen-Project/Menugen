@@ -141,7 +141,7 @@
                     </androidx.cardview.widget.CardView>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="123dp"
+                        android:layout_height="140dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/edge">
 
@@ -171,7 +171,7 @@
                     </androidx.cardview.widget.CardView>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="140dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/edge"
                         android:orientation="horizontal">
@@ -200,90 +200,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="15dp"/>
 
-                <!--                빈 공간 커버-->
-                <LinearLayout
-                    android:id="@+id/empty"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"></LinearLayout>
-
             </LinearLayout>
         </ScrollView>
-
-<!--        하단바 변경버젼 (weight 이용하여 width 3등분함)-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:weightSum="3"
-            android:orientation="horizontal"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/navbar_top_stroke"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
-<!--            1번: 식단 추천-->
-            <LinearLayout
-                android:id="@+id/btn_recommend"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_home"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="식단추천"
-                    android:textColor="#89000000"
-                    android:textSize="15dp"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
-<!--            2번: 식단 세팅-->
-            <LinearLayout
-                android:id="@+id/btn_setting"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_settings_active"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="식단관리"
-                    android:textColor="#6200EE"
-                    android:textSize="15dp"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
-<!--            3번: 내 정보-->
-            <LinearLayout
-                android:id="@+id/btn_info"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_info"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="내 정보"
-                    android:textColor="#89000000"
-                    android:textSize="15dp"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
-        </LinearLayout>
-
     </RelativeLayout>
 </layout>

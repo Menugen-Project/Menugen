@@ -38,7 +38,7 @@
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="당신의 신체정보를 \n입력해주세요!"
+            android:text="당신의 신체정보를 알려주세요!"
             android:textAlignment="center"/>
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
             android:text="맞춤형 식단 분석을 위해 정보를 입력받습니다"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
 
@@ -189,10 +189,10 @@
             android:layout_width="match_parent"
             android:layout_height="2px"
             android:background="#FF7F00"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="15dp"/>
 
 <!--        알러지 체크 설문-->
         <LinearLayout
@@ -204,7 +204,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="알러지를 선택해주세요"
+                android:text="알러지가 있나요? (없다면 생략하세요!)"
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:drawableLeft="@drawable/allergy"
@@ -216,35 +216,35 @@
                 android:layout_margin="20dp">
 
                 <CheckBox
+                    android:id="@+id/allergy0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="게"
+                    android:minHeight="0dp"/>
+                <CheckBox
                     android:id="@+id/allergy1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="난류"
+                    android:text="고등어"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="우유"
+                    android:text="난류"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="메밀"
+                    android:text="닭고기"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="땅콩"
-                    android:minHeight="0dp"/>
-                <CheckBox
-                    android:id="@+id/allergy5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -260,25 +260,32 @@
                 android:layout_marginBottom="20dp">
 
                 <CheckBox
+                    android:id="@+id/allergy5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="돼지고기"
+                    android:minHeight="0dp"/>
+                <CheckBox
                     android:id="@+id/allergy6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="밀"
+                    android:text="땅콩"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="고등어"
+                    android:text="메밀"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="게"
+                    android:text="밀"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy9"
@@ -287,53 +294,78 @@
                     android:checked="false"
                     android:text="새우"
                     android:minHeight="0dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
+
                 <CheckBox
                     android:id="@+id/allergy10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="돼지고기"
+                    android:text="쇠고기"
                     android:minHeight="0dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
                 <CheckBox
                     android:id="@+id/allergy11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="복숭아"
+                    android:text="아황산류"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="토마토"
+                    android:text="어패류(굴, 전복, 홍합 포함)"
                     android:minHeight="0dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
                 <CheckBox
                     android:id="@+id/allergy13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="호두"
-                    android:minHeight="0dp"/>
+                    android:text="오징어"
+                   android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="닭고기"
+                    android:text="우유"
                     android:minHeight="0dp"/>
                 <CheckBox
                     android:id="@+id/allergy15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="해당없음"
+                    android:text="잣"
+                    android:minHeight="0dp"/>
+                <CheckBox
+                    android:id="@+id/allergy16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="토마토"
+                    android:minHeight="0dp"/>
+                <CheckBox
+                    android:id="@+id/allergy17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="호두"
                     android:minHeight="0dp"/>
             </LinearLayout>
         </LinearLayout>
