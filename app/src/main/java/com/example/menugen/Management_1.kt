@@ -133,6 +133,7 @@ class Management1Activity : AppCompatActivity() {
         var final_list = ""
         if (f_list != null){
             final_list = f_list.toString()
+            db.dao().insert(Entity(f_list.toString()))
             Log.d("범인 검거","${db?.dao()?.getTitle().toString()}, $final_list")
         }
 
@@ -154,7 +155,7 @@ class Management1Activity : AppCompatActivity() {
                 val foodtext = db.dao().getTitle()[index]
                 items2.add(foodtext)
                 index++
-                Log.d("while 테스트", items2.toString())
+                Log.d("while 테스트", index.toString())
                 // binding.finalfood.text = foodtext
             }
             // binding.finalfood.text = db.dao().getTitle().toString()

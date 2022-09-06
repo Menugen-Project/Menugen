@@ -40,12 +40,12 @@ class RV2Adapter(val items:MutableList<String>) : RecyclerView.Adapter<RV2Adapte
             val rv_btn = itemView.findViewById<Button>(R.id.rv2delBtn)
 
             rv_btn.setOnClickListener{
-                var foodlist=item
-
-                // Activity로 사용자가 선택한 음식명 전달
-                val intent = Intent(itemView.context, Management1Activity::class.java)
-                intent.putExtra("list", foodlist)
-                itemView.context.startActivity(intent)
+//                var foodlist=item
+//
+//                // Activity로 사용자가 선택한 음식명 전달
+//                val intent = Intent(itemView.context, Management1Activity::class.java)
+//                intent.putExtra("list", foodlist)
+//                itemView.context.startActivity(intent)
             }
         }
     }
