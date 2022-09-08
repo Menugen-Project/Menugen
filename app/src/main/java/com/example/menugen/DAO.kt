@@ -18,8 +18,8 @@ interface DAO {
     @Query("SELECT * FROM entity ORDER BY id ASC")
     fun readAllData() : LiveData<List<Entity>>
 
-//    @DELETE
-//    fun deleteUser(entity: Entity)
+    @Delete
+    fun deleteUser(entity: Entity)
 
     @Query("DELETE FROM entity")
     fun deleteAllUsers()

@@ -43,11 +43,10 @@ class RV2Adapter(val items:MutableList<String>) : RecyclerView.Adapter<RV2Adapte
                 var foodlist=item
 
                 // Activity로 사용자가 선택한 음식명 전달
-//                val rv2intent = Intent(itemView.context, Management1Activity::class.java)
-//                rv2intent.putExtra("final", foodlist)
-//                itemView.context.startActivity(rv2intent)
+                val rv2intent = Intent(itemView.context, Management1Activity::class.java)
+                rv2intent.putExtra("final", foodlist)
+                itemView.context.startActivity(rv2intent)
             }
         }
     }
 }
-

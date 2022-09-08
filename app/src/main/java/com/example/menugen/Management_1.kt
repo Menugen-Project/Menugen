@@ -19,6 +19,9 @@ import com.example.menugen.databinding.ActivityManagement1Binding
 import com.example.menugen.databinding.ActivityRecommendBinding
 import com.example.menugen.databinding.ActivitySettingBinding
 import kotlinx.android.synthetic.main.activity_management1.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -53,7 +56,7 @@ class Management1Activity : AppCompatActivity() {
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        var server = retrofit.create(JoinService::class.java)
+        var server = retrofit.create(ManageFoodList::class.java)
         // <---
 
         // 뷰모델 선언 및 연결
@@ -93,11 +96,10 @@ class Management1Activity : AppCompatActivity() {
                     id: Long
                 ) {
                     if(position == 0){
-                        // Toast.makeText(this@Management1Activity, "대분류를 선택해주세요", Toast.LENGTH_SHORT).show()
+
                     }
                     else if(position != 0){
                         Large_food = Large_food_list[position].toString()
-                        // Toast.makeText(this@Management1Activity, Large_food, Toast.LENGTH_SHORT).show()
 
                         if(Large_food == "밥"){
                             items.clear()
@@ -117,8 +119,6 @@ class Management1Activity : AppCompatActivity() {
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-
-
         // 음식 목록에서 사용자가 선택한 음식에 대한 정보
         val f_list = intent.getStringExtra("list")
         // 최종 선택 메뉴에서 사용자가 제거한 음식에 대한 정보
@@ -132,25 +132,21 @@ class Management1Activity : AppCompatActivity() {
         }
 
         var del_list = ""
-        // 사용자가 최종 음식 목록에서 음식을 제거했을 때
-//        if (f_final != null){
-//            del_list = f_final.toString()
-//            db.dao().deleteUser(Entity(del_list))
-//        }
 
         if(db.dao().getTitle().isEmpty() == false){
             var index = 0
 
-//            if (f_final != null){
-//                del_list = f_final.toString()
-//                db.dao().deleteUser(Entity(del_list))
-//            }
+            if (f_final != null){
+                del_list = f_final.toString()
+                db.dao().deleteUser(Entity(f_final.toString()))
+                Log.d("DB확인", "${db?.dao()?.getTitle().toString()}")
+//                items2.remove(del_list)
+            }
 
             while (index < db.dao().getTitle().size) {
                 val foodtext = db.dao().getTitle()[index]
                 items2.add(foodtext)
                 index++
-                Log.d("while 테스트", index.toString())
                 // binding.finalfood.text = foodtext
             }
             // binding.finalfood.text = db.dao().getTitle().toString()
@@ -164,7 +160,9 @@ class Management1Activity : AppCompatActivity() {
 
         // DB 초기화 + 식단 저장 + 화면 전환(management1으로)
         binding.SettingFinBtn.setOnClickListener{
-            db.dao().deleteAllUsers()
+            var uid = AutoLogin.getUserId(this)
+            var utime:String = "아침"
+            val UserFoodList = db.dao().getTitle()
 
             val recycler = findViewById<RecyclerView>(R.id.finallist)
             val rvAdapter = RVAdapter(items2)
@@ -176,8 +174,30 @@ class Management1Activity : AppCompatActivity() {
             nextintent.putExtra("user_morning", items2.toString())
             Log.d("최종 음식목록 테스트", items2.toString())
             items2.clear()
+
+            server.requestMng(uid, utime, UserFoodList)
+                .enqueue(object :Callback<Join>{
+                    override fun onFailure(call: Call<Join>, t: Throwable) {
+                        Log.d(
+                            "연결 실패", "정보 $uid, $utime, $UserFoodList")
+                    }
+
+                    override fun onResponse(call: Call<Join>, response: Response<Join>) {
+                        val surveyCheck = response.body()
+                        if(surveyCheck?.code==200) {
+                            Log.d(
+                                "성공",
+                                "정보 $uid, $utime, $UserFoodList"
+                            )
+                            startActivity(nextintent)
+                        }
+                        else{
+                            Toast.makeText(this@Management1Activity, "아이디 중복검사를 진행해주세요!",
+                                Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
             startActivity(nextintent)
         }
     }
 }
-

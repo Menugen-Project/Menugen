@@ -54,10 +54,12 @@ public interface JoinService{
 }
 
 // 사용자 식단 정보
-public interface ManageMorning{
+public interface ManageFoodList{
     @FormUrlEncoded
     @POST("/users/signup")
-    fun requestMngMor(
-        @Field("UserFoodList") UserFoodList: List<String>
+    fun requestMng(
+        @Field("userId") id:String,
+        @Field("date") time:String,
+        @Field("break_diet") UserFoodList: List<String>
     ) : Call<Join>
 }
