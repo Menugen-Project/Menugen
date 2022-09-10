@@ -29,9 +29,22 @@ class SettingActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_setting)
 
 
-        val userMorning = intent.getStringExtra("user_morning")
-        val morningText = findViewById<TextView>(R.id.morning)
-        morningText.setText(userMorning)
+        val userFoodList = intent.getStringExtra("userFoodList")
+        val userFoodTime = intent.getStringExtra("userTime")
+        if(userFoodTime == "아침"){
+            val morningText = findViewById<TextView>(R.id.morning)
+            morningText.setText(userFoodList)
+        } else if(userFoodTime == "점심"){
+            val LunchText = findViewById<TextView>(R.id.lunch)
+            LunchText.setText(userFoodList)
+        } else if(userFoodTime == "저녁"){
+            val DinnerText = findViewById<TextView>(R.id.dinner)
+            DinnerText.setText(userFoodList)
+        }
+
+
+        // 식단 관리 시 아침/점심/저녁 알림 변수
+        var time:String = ""
 
 
         // 캘린더 로드 (달력버튼을 눌러 날짜별 설정 -> 날짜 선택 시 각 날짜의 식단 다르게 보여주는 기능 추가 필요)
@@ -42,15 +55,31 @@ class SettingActivity : AppCompatActivity() {
         }
 
         binding.morning.setOnClickListener{
+            time = "아침"
             val intent = Intent(this, Management1Activity::class.java)
+            intent.putExtra("time", time)
+            startActivity(intent)
+        }
+
+        binding.lunch.setOnClickListener{
+            time = "점심"
+            val intent = Intent(this, Management1Activity::class.java)
+            intent.putExtra("time", time)
+            startActivity(intent)
+        }
+
+        binding.dinner.setOnClickListener{
+            time = "저녁"
+            val intent = Intent(this, Management1Activity::class.java)
+            intent.putExtra("time", time)
             startActivity(intent)
         }
 
         // 버튼 클릭을 통한 Management1 액티비티로 이동
-        binding.btnManagement1.setOnClickListener {
-            val intent = Intent(this, Management1Activity::class.java)
-            startActivity(intent)
-        }
+//        binding.btnManagement1.setOnClickListener {
+//            val intent = Intent(this, Management1Activity::class.java)
+//            startActivity(intent)
+//        }
 
         // 하단바 각각 액티비티로 이동
         binding.btnRecommend.setOnClickListener {
@@ -66,6 +95,5 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }
-
     }
 }

@@ -52,6 +52,8 @@ class Recommend : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         /*
         // 하단 탭이 눌렸을 때 화면을 전환하기 위한 객체 생성 -> Fragment
         var bnv_main = findViewById(R.id.bottom_navigationview) as BottomNavigationView
@@ -123,5 +125,4 @@ class Recommend : AppCompatActivity() {
         }
     }
      */
-
 }
