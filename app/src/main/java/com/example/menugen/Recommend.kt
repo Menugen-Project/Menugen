@@ -9,27 +9,60 @@ import android.os.Looper
 import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.menugen.databinding.ActivityInfoBinding
 import com.example.menugen.databinding.ActivityNutrientBinding
 import com.example.menugen.databinding.ActivityRecommendBinding
 import com.example.menugen.databinding.ActivitySettingBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_recommend.*
 
 class Recommend : AppCompatActivity() {
     private lateinit var binding: ActivityRecommendBinding
+//    private var items3 = mutableListOf<String>()
 
-    /*
-    // Fragment간 이동을 위한 변수
-    lateinit var management1: Management_1
-    lateinit var setting: SettingFragment
-     */
+    // 실제 변수를 초기화한 후 추천메뉴의 목록을 가지고 있을 ArrayList를 RecommendActivity에 추가, 임시로 임의데이터 하드코딩
+    var recommendMenuList = arrayListOf<Recommend_Menu>(
+        Recommend_Menu("밥류", "쌀밥", "rice"),
+        Recommend_Menu("찌개류", "콩나물국", "jjigae"),
+        Recommend_Menu("무침류", "봄나물무침", "muchim"),
+        Recommend_Menu("구이류", "조기구이", "gui")
+    )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recommend)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recommend)
+
+        // 리사이클러뷰
+        val RV3Adapter = RV3Adapter(this, recommendMenuList)
+        mRecyclerView.adapter = RV3Adapter
+
+        val lm = LinearLayoutManager(this)
+        mRecyclerView.layoutManager = lm
+        mRecyclerView.setHasFixedSize(true)
+//        var recyclerView = recyclerview_main // recyclerview id
+//        var layoutManager = LinearLayoutManager(this)
+//        recyclerView.layoutManager = layoutManager
+//        var adapter = RV3Adapter(items3)
+//        recyclerView.adapter = adapter
+
+
+        // 액티비티 전환 시 startActivity() 이후 overridePendingTransition을 사용하여 애니메이션을 적용
+        findViewById<Button>(R.id.btn_slide_left).setOnClickListener {
+            val intent = RecommendLeftActivity.newIntent(this)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
+        }
+
+        findViewById<Button>(R.id.btn_slide_right).setOnClickListener {
+            val intent = RecommendRightActivity.newIntent(this)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
+        }
 
 
         // 추천메뉴 아이템 클릭 시, 영양정보 액티비티로 이동

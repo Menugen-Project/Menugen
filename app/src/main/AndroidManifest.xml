@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".RecommendRightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecommendLeftActivity"
+            android:exported="false" />
+        <activity
             android:name=".Guide2"
             android:exported="false" />
         <activity
