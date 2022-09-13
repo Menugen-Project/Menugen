@@ -19,6 +19,9 @@ import com.example.menugen.databinding.ActivityManagement1Binding
 import com.example.menugen.databinding.ActivityRecommendBinding
 import com.example.menugen.databinding.ActivitySettingBinding
 import kotlinx.android.synthetic.main.activity_management1.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -47,12 +50,12 @@ class Management1Activity : AppCompatActivity() {
 
 //        Log.d("로그","${db?.dao()?.getTitle().toString()}")
         // 서버 연동코드 <---
-        val url = "http://220.149.236.48:27017/"
+        val url = "http://172.25.244.84:27017/"
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        var server = retrofit.create(JoinService::class.java)
+        var server = retrofit.create(ManageFoodList::class.java)
         // <---
 
         // 뷰모델 선언 및 연결
@@ -102,18 +105,18 @@ class Management1Activity : AppCompatActivity() {
                         if(Large_food == "밥"){
                             Middel_food_list = mutableListOf<String>("선택","쌀밥", "잡곡밥", "채소밥", "비빔밥", "덮밥", "김(초)밥")
 
-//                            items.clear()
-//                            items.add("감자밥")
-//                            items.add("검은콩밥")
-//                            items.add("계란덮밥")
-//                            // adapter.notifyDataSetChanged()
-//
-//                            // RecyclerView 활용을 위한 코드
-//                            val recycler = findViewById<RecyclerView>(R.id.foodlist)
-//                            val rvAdapter = RVAdapter(items)
-//                            recycler.adapter = rvAdapter
-//
-//                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+                            items.clear()
+                            items.add("감자밥")
+                            items.add("검은콩밥")
+                            items.add("계란덮밥")
+                            // adapter.notifyDataSetChanged()
+
+                            // RecyclerView 활용을 위한 코드
+                            val recycler = findViewById<RecyclerView>(R.id.foodlist)
+                            val rvAdapter = RVAdapter(items)
+                            recycler.adapter = rvAdapter
+
+                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
                         }
                         else if(Large_food == "면 및 만두"){
                             Middel_food_list = mutableListOf<String>("선택","면", "만두")
@@ -226,18 +229,39 @@ class Management1Activity : AppCompatActivity() {
         binding.SettingFinBtn.setOnClickListener{
             db.dao().deleteAllUsers()
 
-            val recycler = findViewById<RecyclerView>(R.id.finallist)
-            val rvAdapter = RVAdapter(items2)
-            recycler.adapter = rvAdapter
+//            var uid = AutoLogin.getUserId(this)
+//            val user_choice_time = intent.getStringExtra("time")
+            var uid = "user20"
 
-            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+            server.requestMng(uid, user_choice_time.toString(), 123)
+                .enqueue(object : Callback<Join> {
+                    override fun onFailure(call: Call<Join>, t: Throwable) {
+                        Log.d("실패", "정보: $uid, $user_choice_time")
+                    }
 
-            val nextintent = Intent(this,SettingActivity::class.java)
-            nextintent.putExtra("userFoodList", items2.toString())
-            nextintent.putExtra("userTime", user_choice_time)
-            Log.d("식단 시간 확인", user_choice_time.toString())
-            items2.clear()
-            startActivity(nextintent)
+                    override fun onResponse(call: Call<Join>, response: Response<Join>) {
+                        val serverCheck = response.body()
+                        Log.d("??", "??: $serverCheck.code")
+                        if(serverCheck?.code==200){
+                            val recycler = findViewById<RecyclerView>(R.id.finallist)
+                            val rvAdapter = RVAdapter(items2)
+                            recycler.adapter = rvAdapter
+
+                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+
+                            val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
+                            nextintent.putExtra("userFoodList", items2.toString())
+                            nextintent.putExtra("userTime", user_choice_time)
+                            Log.d("식단 시간 확인", user_choice_time.toString())
+                            Log.d("성공!", "정보: $uid, $user_choice_time")
+                            items2.clear()
+                            startActivity(nextintent)
+                        }
+                        else{
+                            Toast.makeText(this@Management1Activity, "실패! $serverCheck.code", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
         }
     }
 }

@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // 서버 연동
-        val url = "http://220.149.236.48:27017/"
+        val url = "http://172.25.244.84:27017/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     // 가입된 계정이 아니면 X, 맞으면 다음 화면
                     if (userlogin?.code == 200) {
                         Log.d("로그인 성공", "로그인 성공 $uid, $upw, $alllist")
+                        AutoLogin.setUserId(this@LoginActivity,uid)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this@LoginActivity, "가입된 계정이 아닙니다!", Toast.LENGTH_LONG)
