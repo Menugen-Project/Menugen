@@ -191,7 +191,7 @@ class Management1Activity : AppCompatActivity() {
         // 사용자가 음식 목록에서 음식을 추가했을 때
         if (f_list != null){
             final_list = f_list.toString()
-            db.dao().insert(Entity(f_list.toString()))
+            db.dao().insert(Entity(final_list))
         }
 
         var del_list = ""
@@ -253,7 +253,7 @@ class Management1Activity : AppCompatActivity() {
                             nextintent.putExtra("userFoodList", items2.toString())
                             nextintent.putExtra("userTime", user_choice_time)
                             Log.d("식단 시간 확인", user_choice_time.toString())
-                            Log.d("성공!", "정보: $uid, $user_choice_time")
+                            Log.d("성공!", "정보: $uid, $user_choice_time, $items2")
                             items2.clear()
                             startActivity(nextintent)
                         }

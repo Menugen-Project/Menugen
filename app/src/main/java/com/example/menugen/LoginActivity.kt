@@ -64,8 +64,7 @@ class LoginActivity : AppCompatActivity() {
                         AutoLogin.setUserId(this@LoginActivity,uid)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this@LoginActivity, "가입된 계정이 아닙니다!", Toast.LENGTH_LONG)
-                            .show()
+                        Toast.makeText(this@LoginActivity, "가입된 계정이 아닙니다!", Toast.LENGTH_LONG).show()
                     }
                 }
             })

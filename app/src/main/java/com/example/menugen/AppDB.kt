@@ -25,7 +25,8 @@ abstract class AppDatabase : RoomDatabase() {
                         AppDatabase::class.java,
                         "database-contacts"
                     )
-                        .allowMainThreadQueries()
+                        // 샘플코드이므로 제거
+//                        .allowMainThreadQueries()
                         .build()
                 }
             }
