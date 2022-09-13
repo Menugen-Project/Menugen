@@ -20,15 +20,8 @@ import kotlinx.android.synthetic.main.activity_recommend.*
 
 class Recommend : AppCompatActivity() {
     private lateinit var binding: ActivityRecommendBinding
-//    private var items3 = mutableListOf<String>()
-
-    // 실제 변수를 초기화한 후 추천메뉴의 목록을 가지고 있을 ArrayList를 RecommendActivity에 추가, 임시로 임의데이터 하드코딩
-    var recommendMenuList = arrayListOf<Recommend_Menu>(
-        Recommend_Menu("밥류", "쌀밥", "rice"),
-        Recommend_Menu("찌개류", "콩나물국", "jjigae"),
-        Recommend_Menu("무침류", "봄나물무침", "muchim"),
-        Recommend_Menu("구이류", "조기구이", "gui")
-    )
+    lateinit var RV3Adapter: RV3Adapter
+    val datas = mutableListOf<RecommendData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,38 +31,28 @@ class Recommend : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recommend)
 
         // 리사이클러뷰
-        val RV3Adapter = RV3Adapter(this, recommendMenuList)
-        mRecyclerView.adapter = RV3Adapter
-
-        val lm = LinearLayoutManager(this)
-        mRecyclerView.layoutManager = lm
-        mRecyclerView.setHasFixedSize(true)
-//        var recyclerView = recyclerview_main // recyclerview id
-//        var layoutManager = LinearLayoutManager(this)
-//        recyclerView.layoutManager = layoutManager
-//        var adapter = RV3Adapter(items3)
-//        recyclerView.adapter = adapter
+        initRecycler()
 
 
         // 액티비티 전환 시 startActivity() 이후 overridePendingTransition을 사용하여 애니메이션을 적용
         findViewById<Button>(R.id.btn_slide_left).setOnClickListener {
             val intent = RecommendLeftActivity.newIntent(this)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
         }
 
         findViewById<Button>(R.id.btn_slide_right).setOnClickListener {
             val intent = RecommendRightActivity.newIntent(this)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
 
 
         // 추천메뉴 아이템 클릭 시, 영양정보 액티비티로 이동
-        binding.largeMenu1.setOnClickListener {
-            val intent = Intent(this, NutrientActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.largeMenu1.setOnClickListener {
+//            val intent = Intent(this, NutrientActivity::class.java)
+//            startActivity(intent)
+//        }
 
         // 하단바 각각 액티비티로 이동
         binding.btnRecommend.setOnClickListener {
@@ -134,6 +117,26 @@ class Recommend : AppCompatActivity() {
     // 뒤로가기를 일정시간 내에 두번 입력하는 것 감지하는 함수
     fun runDelayed(millis: Long, function: () -> Unit){
         Handler(Looper.getMainLooper()).postDelayed(function, millis)
+    }
+
+    // RecyclerView를 사용하기 위해서는 위에서 만들어준 Adpater와 RecyclerView를 연결해주어야함.
+    // 또한 서버와 연결하는 것이 아니라면 더미 data를 Adapter에 넣어줘야함.
+    private fun initRecycler() {
+        RV3Adapter = RV3Adapter(this)
+        rv_menu.adapter = RV3Adapter
+
+
+        datas.apply {
+            add(RecommendData(photo = R.drawable.rice, largeMenuName = "대분류: 밥류", smallMenuName = "쌀밥"))
+            add(RecommendData(photo = R.drawable.jjigae, largeMenuName = "대분류: 찌개류", smallMenuName = "된장찌개"))
+            add(RecommendData(photo = R.drawable.kimchi, largeMenuName = "대분류: 김치류", smallMenuName = "배추김치"))
+            add(RecommendData(photo = R.drawable.muchim, largeMenuName = "대분류: 무침류", smallMenuName = "봄나물무침"))
+            add(RecommendData(photo = R.drawable.gui, largeMenuName = "대분류: 구이류", smallMenuName = "조기구이"))
+
+            RV3Adapter.datas = datas
+            RV3Adapter.notifyDataSetChanged()
+
+        }
     }
 
     /*

@@ -9,7 +9,7 @@ class RecommendRightActivity : AppCompatActivity() {
 
     companion object {
         fun newIntent(context: Context): Intent {
-            return Intent(context, RecommendLeftActivity::class.java)
+            return Intent(context, RecommendRightActivity::class.java)
         }
     }
 
@@ -20,6 +20,6 @@ class RecommendRightActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
+        overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
     }
 }
