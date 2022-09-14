@@ -6,7 +6,7 @@ data class Login(
     var code: Int,
 //    var identify: String,
 //    var password: String,
-//    var foodList: ArrayList<String>,
+//    var foodList: Array<String>,
     var fd1: String,
     var fd2: String,
     var fd3: String,

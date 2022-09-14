@@ -95,27 +95,6 @@ class Recommend : AppCompatActivity() {
         } */
     }
 
-    // 뒤로가기 방지를 위한 변수
-    private var doubleBackToExit = false
-
-    // 뒤로가기 방지 및 두번 뒤로가기 시 종료
-    override fun onBackPressed() {
-        if(doubleBackToExit){
-            finishAffinity()
-        } else {
-            Toast.makeText(this, "종료하시려면 뒤로가기를 한번 더 눌러주세요", Toast.LENGTH_SHORT).show()
-            doubleBackToExit = true
-            runDelayed(1500L){
-                doubleBackToExit = false
-            }
-        }
-    }
-
-    // 뒤로가기를 일정시간 내에 두번 입력하는 것 감지하는 함수
-    fun runDelayed(millis: Long, function: () -> Unit){
-        Handler(Looper.getMainLooper()).postDelayed(function, millis)
-    }
-
     // RecyclerView를 사용하기 위해서는 위에서 만들어준 Adpater와 RecyclerView를 연결해주어야함.
     // 또한 서버와 연결하는 것이 아니라면 더미 data를 Adapter에 넣어줘야함.
     private fun initRecycler() {
@@ -123,16 +102,24 @@ class Recommend : AppCompatActivity() {
         // var foodList = intent.getSerializableExtra("foodList") as ArrayList<String>
         // Log.d("확인", foodList.toString())
 
+//        val food1 = intent.getStringExtra("food1")
+//        val food2 = intent.getStringExtra("food2")
+//        val food3 = intent.getStringExtra("food3")
+//        val food4 = intent.getStringExtra("food4")
+
         RV3Adapter = RV3Adapter(this)
         rv_menu.adapter = RV3Adapter
 
-
         datas.apply {
-            add(RecommendData(photo = R.drawable.rice, largeMenuName = "대분류: 밥류", smallMenuName = "쌀밥"))
-            add(RecommendData(photo = R.drawable.jjigae, largeMenuName = "대분류: 찌개류", smallMenuName = "된장찌개"))
-            add(RecommendData(photo = R.drawable.kimchi, largeMenuName = "대분류: 김치류", smallMenuName = "배추김치"))
-            add(RecommendData(photo = R.drawable.muchim, largeMenuName = "대분류: 무침류", smallMenuName = "봄나물무침"))
-            add(RecommendData(photo = R.drawable.gui, largeMenuName = "대분류: 구이류", smallMenuName = "조기구이"))
+//            add(RecommendData(photo = R.drawable.rice, largeMenuName = "대분류: 밥류", smallMenuName = food1.toString()))
+//            add(RecommendData(photo = R.drawable.jjigae, largeMenuName = "대분류: 찌개류", smallMenuName = food2.toString()))
+//            add(RecommendData(photo = R.drawable.kimchi, largeMenuName = "대분류: 김치류", smallMenuName = food3.toString()))
+//            add(RecommendData(photo = R.drawable.muchim, largeMenuName = "대분류: 무침류", smallMenuName = food4.toString()))
+
+            add(RecommendData(photo = R.drawable.rice, largeMenuName = "대분류: 밥류", smallMenuName = "임시"))
+            add(RecommendData(photo = R.drawable.jjigae, largeMenuName = "대분류: 찌개류", smallMenuName = "임시"))
+            add(RecommendData(photo = R.drawable.kimchi, largeMenuName = "대분류: 김치류", smallMenuName = "임시"))
+            add(RecommendData(photo = R.drawable.muchim, largeMenuName = "대분류: 무침류", smallMenuName = "임시"))
 
             RV3Adapter.datas = datas
             RV3Adapter.notifyDataSetChanged()
@@ -162,4 +149,25 @@ class Recommend : AppCompatActivity() {
         }
     }
      */
+
+    // 뒤로가기 방지를 위한 변수
+    private var doubleBackToExit = false
+
+    // 뒤로가기 방지 및 두번 뒤로가기 시 종료
+    override fun onBackPressed() {
+        if(doubleBackToExit){
+            finishAffinity()
+        } else {
+            Toast.makeText(this, "종료하시려면 뒤로가기를 한번 더 눌러주세요", Toast.LENGTH_SHORT).show()
+            doubleBackToExit = true
+            runDelayed(1500L){
+                doubleBackToExit = false
+            }
+        }
+    }
+
+    // 뒤로가기를 일정시간 내에 두번 입력하는 것 감지하는 함수
+    fun runDelayed(millis: Long, function: () -> Unit){
+        Handler(Looper.getMainLooper()).postDelayed(function, millis)
+    }
 }

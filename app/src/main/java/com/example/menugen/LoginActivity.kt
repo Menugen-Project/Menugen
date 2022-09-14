@@ -66,6 +66,10 @@ class LoginActivity : AppCompatActivity() {
                     if (userlogin?.code == 200) {
                         Log.d("로그인 성공", "로그인 성공 $uid, $upw, $fd1, $fd2, $fd3, $fd4")
                         AutoLogin.setUserId(this@LoginActivity,uid)
+                        intent.putExtra("food1", fd1)
+                        intent.putExtra("food2", fd2)
+                        intent.putExtra("food3", fd3)
+                        intent.putExtra("food4", fd4)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this@LoginActivity, "가입된 계정이 아닙니다!", Toast.LENGTH_LONG).show()

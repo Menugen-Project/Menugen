@@ -37,6 +37,8 @@ class SurveyActivity : AppCompatActivity() {
         var sex =""
         // 사용자 나이를 담을 변수
         var uage=""
+        // 알러지 수를 담을 변수
+        var index = 0
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey)
@@ -131,74 +133,92 @@ class SurveyActivity : AppCompatActivity() {
                 // 1~14번 알러지 정보 가져오기
                 if (al1.isChecked) {
                     val al0index = 1
+                    index++
                     listall.add(al0index.toString())
                 }
                 if (al2.isChecked) {
                     val al1index = 2
+                    index++
                     listall.add(al1index.toString())
                 }
                 if (al3.isChecked) {
                     val al2index = 3
+                    index++
                     listall.add(al2index.toString())
                 }
                 if (al4.isChecked) {
                     val al3index = 4
+                    index++
                     listall.add(al3index.toString())
                 }
                 if (al5.isChecked) {
                     val al4index = 5
+                    index++
                     listall.add(al4index.toString())
                 }
                 if (al6.isChecked) {
                     val al5index = 6
+                    index++
                     listall.add(al5index.toString())
                 }
                 if (al7.isChecked) {
                     val al6index = 7
+                    index++
                     listall.add(al6index.toString())
                 }
                 if (al8.isChecked) {
                     val al7index = 8
+                    index++
                     listall.add(al7index.toString())
                 }
                 if (al9.isChecked) {
                     val al8index = 9
+                    index++
                     listall.add(al8index.toString())
                 }
                 if (al10.isChecked) {
                     val al9index = 10
+                    index++
                     listall.add(al9index.toString())
                 }
                 if (al11.isChecked) {
                     val al10index = 11
+                    index++
                     listall.add(al10index.toString())
                 }
                 if (al12.isChecked) {
                     val al11index = 12
+                    index++
                     listall.add(al11index.toString())
                 }
                 if (al13.isChecked) {
                     val al12index = 13
+                    index++
                     listall.add(al12index.toString())
                 }
                 if (al14.isChecked) {
                     val al13index = 14
+                    index++
                     listall.add(al13index.toString())
                 }
                 if (al15.isChecked) {
                     val al14index = 15
+                    index++
                     listall.add(al14index.toString())
                 }
                 if (al16.isChecked) {
                     val al15index = 16
+                    index++
                     listall.add(al15index.toString())
                 }
                 if (al17.isChecked) {
                     val al16index = 17
+                    index++
                     listall.add(al16index.toString())
                 }
                 if (al18.isChecked) {
                     val al17index = 18
+                    index++
                     listall.add(al17index.toString())
                 }
                 // 회원가입 절차
@@ -222,7 +242,7 @@ class SurveyActivity : AppCompatActivity() {
                                 startActivity(newintent)
                             }
                             else{
-                                Toast.makeText(this@SurveyActivity, "연결 실패ㅕㄴㄷ", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@SurveyActivity, "연결 실패", Toast.LENGTH_LONG).show()
                             }
                         }
                     })
