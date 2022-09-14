@@ -1,16 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RecommendLeftActivity">
+<layout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RecommendLeftActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="왼쪽"
-        android:textSize="50dp"/>
+        <!--        상단바-->
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#FFE4B5"
+            android:orientation="horizontal">
 
-</LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="90dp"
+                android:src="@drawable/topimg" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="MENUGEN"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!--        식단추천 본문(스크롤 가능)-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--                식단 추천 상단 문구-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="오늘 한끼는 이렇게 드셔볼까요?"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center">-->
+<!--                    <Button-->
+<!--                        android:id="@+id/btn_slide_left"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="이전 추천"-->
+<!--                        android:layout_marginRight="100dp"/>-->
+<!--                    <Button-->
+<!--                        android:id="@+id/btn_slide_right"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="다음 추천"/>-->
+<!--                </LinearLayout>-->
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_menu"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="0dp"
+                    app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation = "vertical"
+                    tools:listitem="@layout/rv_item3">
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <!--                식단 추천: 대분류 1번-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/large_menu1"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="50dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_marginRight="50dp"-->
+                <!--                    android:layout_marginBottom="20dp"-->
+                <!--                    android:background="#32FD4987"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:onClick="onDialogBtnClicked"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="125dp"-->
+                <!--                        android:layout_height="100dp"-->
+                <!--                        android:src="@drawable/rice" />-->
+
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="15dp"-->
+                <!--                        android:layout_marginRight="15dp"-->
+                <!--                        android:background="#32FD4987"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:orientation="vertical">-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:text="대분류 1번 (밥류)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="bold" />-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:text="소분류(쌀밥)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="italic" />-->
+                <!--                    </LinearLayout>-->
+                <!--                </LinearLayout>-->
+
+                <!--                식단 추천: 대분류 2번-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/large_menu2"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="50dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_marginRight="50dp"-->
+                <!--                    android:layout_marginBottom="20dp"-->
+                <!--                    android:background="#33FFC107"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="125dp"-->
+                <!--                        android:layout_height="100dp"-->
+                <!--                        android:src="@drawable/tang" />-->
+
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="15dp"-->
+                <!--                        android:layout_marginRight="15dp"-->
+                <!--                        android:background="#33FFC107"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:orientation="vertical">-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:text="대분류 2번 (국류)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="bold" />-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:text="소분류(~국)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="italic" />-->
+                <!--                    </LinearLayout>-->
+                <!--                </LinearLayout>-->
+
+                <!--                식단 추천: 대분류 3번-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/large_menu3"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="50dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_marginRight="50dp"-->
+                <!--                    android:layout_marginBottom="20dp"-->
+                <!--                    android:background="#3300FF77"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="125dp"-->
+                <!--                        android:layout_height="100dp"-->
+                <!--                        android:src="@drawable/gui" />-->
+
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="15dp"-->
+                <!--                        android:layout_marginRight="15dp"-->
+                <!--                        android:background="#3300FF77"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:orientation="vertical">-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:text="대분류 3번 (구이류)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="bold" />-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:text="소분류(~구이)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="italic" />-->
+                <!--                    </LinearLayout>-->
+                <!--                </LinearLayout>-->
+
+                <!--                식단 추천: 대분류 4번-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/large_menu4"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="50dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_marginRight="50dp"-->
+                <!--                    android:layout_marginBottom="20dp"-->
+                <!--                    android:background="#33566EF4"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="125dp"-->
+                <!--                        android:layout_height="100dp"-->
+                <!--                        android:src="@drawable/muchim" />-->
+
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="15dp"-->
+                <!--                        android:layout_marginRight="15dp"-->
+                <!--                        android:background="#33566EF4"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:orientation="vertical">-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:text="대분류 4번 (무침류)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="bold" />-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:text="소분류(~무침)"-->
+                <!--                            android:textSize="15dp"-->
+                <!--                            android:textStyle="italic" />-->
+                <!--                    </LinearLayout>-->
+                <!--                </LinearLayout>-->
+
+                <!--                빈 공간 커버-->
+                <LinearLayout
+                    android:id="@+id/empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!--        하단바 변경버젼 (weight 이용하여 width 3등분함)-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/navbar_top_stroke"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+            <!--            1번: 식단 추천-->
+            <LinearLayout
+                android:id="@+id/btn_recommend"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home_active"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="식단추천"
+                    android:textColor="#6200EE"
+                    android:textSize="15dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <!--            2번: 식단 세팅-->
+            <LinearLayout
+                android:id="@+id/btn_setting"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_settings"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="식단관리"
+                    android:textColor="#89000000"
+                    android:textSize="15dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <!--            3번: 내 정보-->
+            <LinearLayout
+                android:id="@+id/btn_info"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_info"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 정보"
+                    android:textColor="#89000000"
+                    android:textSize="15dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
