@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // 서버 연동
         val url = "http://172.25.244.84:27017/"
+        // val url = "http://220.149.236.48:27017/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
@@ -54,13 +55,16 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
                     val userlogin = response.body()
-                    val alllist = userlogin?.allergy.toString()
+                    val fd1 = userlogin?.fd1.toString()
+                    val fd2 = userlogin?.fd2.toString()
+                    val fd3 = userlogin?.fd3.toString()
+                    val fd4 = userlogin?.fd4.toString()
                     // 식단추천화면에 사용자 알러지 정보 전달
-                    intent.putExtra("allergy", alllist)
+//                    intent.putExtra("foodList", foodList)
 
                     // 가입된 계정이 아니면 X, 맞으면 다음 화면
                     if (userlogin?.code == 200) {
-                        Log.d("로그인 성공", "로그인 성공 $uid, $upw, $alllist")
+                        Log.d("로그인 성공", "로그인 성공 $uid, $upw, $fd1, $fd2, $fd3, $fd4")
                         AutoLogin.setUserId(this@LoginActivity,uid)
                         startActivity(intent)
                     } else {

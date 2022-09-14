@@ -56,7 +56,7 @@ public interface JoinService{
 // 사용자 식단 정보
 public interface ManageFoodList{
     @FormUrlEncoded
-    @POST("/users/diets")
+    @POST("/diets")
     fun requestMng(
         @Field("userId") id:String,
         @Field("date") time:String,

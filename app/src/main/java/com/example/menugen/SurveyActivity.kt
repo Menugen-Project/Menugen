@@ -25,6 +25,8 @@ class SurveyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // 서버 연동코드
         val url = "http://172.25.244.84:27017/"
+        // val url = "http://220.149.236.48:27017/"
+
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
@@ -220,7 +222,7 @@ class SurveyActivity : AppCompatActivity() {
                                 startActivity(newintent)
                             }
                             else{
-                                Toast.makeText(this@SurveyActivity, "아이디 중복검사를 진행해주세요!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@SurveyActivity, "연결 실패ㅕㄴㄷ", Toast.LENGTH_LONG).show()
                             }
                         }
                     })

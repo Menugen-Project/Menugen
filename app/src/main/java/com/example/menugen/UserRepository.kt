@@ -17,7 +17,7 @@ class UserRepository(private val DAO: DAO) {
         DAO.deleteAllUsers()
     }
 
-    suspend fun deleteUser(entity: Entity){
-        DAO.deleteUser(entity)
+    suspend fun deleteUserByName(foodList:String){
+        DAO.deleteUserByName(foodList)
     }
 }

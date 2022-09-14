@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -33,7 +34,6 @@ class Recommend : AppCompatActivity() {
         // 리사이클러뷰
         initRecycler()
 
-
         // 액티비티 전환 시 startActivity() 이후 overridePendingTransition을 사용하여 애니메이션을 적용
         findViewById<Button>(R.id.btn_slide_left).setOnClickListener {
             val intent = RecommendLeftActivity.newIntent(this)
@@ -46,7 +46,6 @@ class Recommend : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
-
 
         // 추천메뉴 아이템 클릭 시, 영양정보 액티비티로 이동
 //        binding.largeMenu1.setOnClickListener {
@@ -67,8 +66,6 @@ class Recommend : AppCompatActivity() {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }
-
-
 
         /*
         // 하단 탭이 눌렸을 때 화면을 전환하기 위한 객체 생성 -> Fragment
@@ -122,6 +119,10 @@ class Recommend : AppCompatActivity() {
     // RecyclerView를 사용하기 위해서는 위에서 만들어준 Adpater와 RecyclerView를 연결해주어야함.
     // 또한 서버와 연결하는 것이 아니라면 더미 data를 Adapter에 넣어줘야함.
     private fun initRecycler() {
+        // 서버에서 보내준 추천 식단 확인
+        // var foodList = intent.getSerializableExtra("foodList") as ArrayList<String>
+        // Log.d("확인", foodList.toString())
+
         RV3Adapter = RV3Adapter(this)
         rv_menu.adapter = RV3Adapter
 

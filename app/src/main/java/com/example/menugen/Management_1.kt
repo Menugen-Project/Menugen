@@ -168,14 +168,12 @@ class Management1Activity : AppCompatActivity() {
                         // 스피너에 추가된 중분류가 보이도록 설정
                         val middle_food_adapter = ArrayAdapter(this@Management1Activity, android.R.layout.simple_list_item_1,Middel_food_list)
                         binding.middleMenuSpinner.adapter = middle_food_adapter
-
-                        items.clear()
                         // RecyclerView 활용을 위한 코드
-                        val recycler = findViewById<RecyclerView>(R.id.foodlist)
-                        val rvAdapter = RVAdapter(items)
-                        recycler.adapter = rvAdapter
-
-                        recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+//                        val recycler = findViewById<RecyclerView>(R.id.foodlist)
+//                        val rvAdapter = RVAdapter(items)
+//                        recycler.adapter = rvAdapter
+//
+//                        recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
                     }
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -187,33 +185,43 @@ class Management1Activity : AppCompatActivity() {
         // 최종 선택 메뉴에서 사용자가 제거한 음식에 대한 정보
         val f_final = intent.getStringExtra("final")
 
-        var final_list = ""
+//        var final_list = ""
         // 사용자가 음식 목록에서 음식을 추가했을 때
         if (f_list != null){
-            final_list = f_list.toString()
-            db.dao().insert(Entity(final_list))
+//            final_list = f_list.toString()
+            db.dao().insert(Entity(f_list))
+            Log.d("DB 확인", "추가: ${db?.dao()?.getTitle().toString()}")
         }
 
-        var del_list = ""
+//        var del_list = ""
         // 사용자가 최종 음식 목록에서 음식을 제거했을 때
-//        if (f_final != null){
+        if (f_final != null){
 //            del_list = f_final.toString()
-//            db.dao().deleteUser(Entity(del_list))
-//        }
+            db.dao().deleteUserByName(f_final)
+            Log.d("DB 확인", f_final)
+            Log.d("DB 확인", "삭제: ${db?.dao()?.getTitle().toString()}")
+
+//            val recycler2 = findViewById<RecyclerView>(R.id.finallist)
+//            val rv2Adapter = RV2Adapter(items2)
+//            recycler2.adapter = rv2Adapter
+//
+//            recycler2.layoutManager = LinearLayoutManager(this@Management1Activity)
+        }
 
         if(db.dao().getTitle().isEmpty() == false){
             var index = 0
 
 //            if (f_final != null){
-//                del_list = f_final.toString()
-//                db.dao().deleteUser(Entity(del_list))
+////                del_list = f_final.toString()
+//                db.dao().deleteUser(Entity(f_final))
+//                Log.d("삭제 확인", "${db?.dao()?.getTitle().toString()}")
 //            }
 
             while (index < db.dao().getTitle().size) {
                 val foodtext = db.dao().getTitle()[index]
                 items2.add(foodtext)
                 index++
-                Log.d("while 테스트", index.toString())
+                // Log.d("while 테스트", index.toString())
                 // binding.finalfood.text = foodtext
             }
             // binding.finalfood.text = db.dao().getTitle().toString()
@@ -225,13 +233,14 @@ class Management1Activity : AppCompatActivity() {
             recycler2.layoutManager = LinearLayoutManager(this@Management1Activity)
         }
 
+        var uid = "user20"
+
         // DB 초기화 + 식단 저장 + 화면 전환(management1으로)
         binding.SettingFinBtn.setOnClickListener{
             db.dao().deleteAllUsers()
 
 //            var uid = AutoLogin.getUserId(this)
 //            val user_choice_time = intent.getStringExtra("time")
-            var uid = "user20"
 
             server.requestMng(uid, user_choice_time.toString(), 123)
                 .enqueue(object : Callback<Join> {
@@ -241,13 +250,13 @@ class Management1Activity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<Join>, response: Response<Join>) {
                         val serverCheck = response.body()
-                        Log.d("??", "??: $serverCheck.code")
+                        Log.d("뭐지?", "코드: ${serverCheck?.code}")
                         if(serverCheck?.code==200){
-                            val recycler = findViewById<RecyclerView>(R.id.finallist)
-                            val rvAdapter = RVAdapter(items2)
-                            recycler.adapter = rvAdapter
-
-                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+//                            val recycler = findViewById<RecyclerView>(R.id.finallist)
+//                            val rvAdapter = RVAdapter(items2)
+//                            recycler.adapter = rvAdapter
+//
+//                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
 
                             val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
                             nextintent.putExtra("userFoodList", items2.toString())
@@ -258,6 +267,7 @@ class Management1Activity : AppCompatActivity() {
                             startActivity(nextintent)
                         }
                         else{
+                            Log.d("뭐지?", "else : ${response.body()}")
                             Toast.makeText(this@Management1Activity, "실패! $serverCheck.code", Toast.LENGTH_LONG).show()
                         }
                     }
