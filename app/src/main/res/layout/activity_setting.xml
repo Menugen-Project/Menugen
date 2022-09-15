@@ -64,7 +64,6 @@
                     android:layout_width="360dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-
                     android:background="#86FF8D8D"
                     android:orientation="horizontal">
 
@@ -72,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:background="@drawable/edge"
                         android:padding="10dp"
                         android:text="아침" />
@@ -80,10 +79,10 @@
 <!--                    식단 관리: 아침-->
                     <LinearLayout
                         android:id="@+id/small_menu1"
-                        android:layout_width="250dp"
+                        android:layout_width="240dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="10dp"
+
                         android:background="#FFFFFF"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -97,6 +96,13 @@
                             android:text=""
                             android:textSize="16dp" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X" />
 
                 </LinearLayout>
 
@@ -113,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:background="@drawable/edge"
                         android:padding="10dp"
                         android:text="점심" />
@@ -121,10 +127,9 @@
 <!--                    식단 관리: 점심-->
                     <LinearLayout
                         android:id="@+id/small_menu2"
-                        android:layout_width="250dp"
+                        android:layout_width="240dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="10dp"
                         android:background="#FFFFFF"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -138,6 +143,14 @@
                             android:text=""
                             android:textSize="16dp" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X" />
+
                 </LinearLayout>
 
 <!--                저녁 식단 관리-->
@@ -154,7 +167,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:background="@drawable/edge"
                         android:padding="10dp"
                         android:text="저녁" />
@@ -162,10 +175,9 @@
 <!--                    식단 관리: 저녁-->
                     <LinearLayout
                         android:id="@+id/small_menu3"
-                        android:layout_width="250dp"
+                        android:layout_width="240dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="10dp"
                         android:background="#FFFFFF"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -179,18 +191,26 @@
                             android:text=""
                             android:textSize="16dp" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X" />
+
                 </LinearLayout>
 
 <!--                식단 수정 버튼-->
 
                 <Button
-                    android:id="@+id/btn_management1"
+                    android:id="@+id/btn_temp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="식단 수정" />
+                    android:text="식단 초기화" />
 
 <!--                빈 공간 커버-->
                 <LinearLayout

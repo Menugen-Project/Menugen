@@ -7,37 +7,31 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
-import com.example.menugen.databinding.ActivityInfoBinding
 import com.example.menugen.databinding.ActivityManagement1Binding
-import com.example.menugen.databinding.ActivityRecommendBinding
-import com.example.menugen.databinding.ActivitySettingBinding
-import kotlinx.android.synthetic.main.activity_management1.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.menugen.databinding.ActivityManagement2Binding
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Management1Activity : AppCompatActivity() {
+class management2 : AppCompatActivity() {
     // 데이터 바인딩
-    private lateinit var binding: ActivityManagement1Binding
+    private lateinit var binding: ActivityManagement2Binding
     private lateinit var adapter: RVAdapter
     private lateinit var adapter2: RV2Adapter
 
     private var items = mutableListOf<String>()
     private var items2 = mutableListOf<String>()
 
+    private var user_choice_time = ""
+    private var user_choice_date = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_management1)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_management1)
+        setContentView(R.layout.activity_management2)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_management2)
 
         // 서버 연동코드 <---
         val url = "http://172.25.244.84:27017/"
@@ -47,9 +41,6 @@ class Management1Activity : AppCompatActivity() {
             .build()
         var server = retrofit.create(ManageFoodList::class.java)
         // <---
-
-        // 뷰모델 선언 및 연결
-        // val userViewModel = ViewModelProvider(this,UserViewModel.Factory(application)).get(UserViewModel::class.java)
 
         // 어댑터 연결
         adapter = RVAdapter(items)
@@ -64,15 +55,14 @@ class Management1Activity : AppCompatActivity() {
         // 사용자가 선택한 식단의 시간대가 아침/점심/저녁 중 어느것인지에 대한 정보가 담긴 변수
         val time = intent.getStringExtra("time")
         val date = intent.getStringExtra("date")
-        var user_choice_date:String =""
-        var user_choice_time:String= ""
 
-        if(time != null){
+        if(time != null && time != ""){
             user_choice_time = time.toString()
         }
-        if(date != null){
+        if(date != null && date != ""){
             user_choice_date = date.toString()
         }
+        Log.d("날짜/시간 확인", "$user_choice_date, $user_choice_time")
 
 
         // 처음 대분류 & 중분류에 들어갈 음식들
@@ -117,7 +107,7 @@ class Management1Activity : AppCompatActivity() {
                             val rvAdapter = RVAdapter(items)
                             recycler.adapter = rvAdapter
 
-                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+                            recycler.layoutManager = LinearLayoutManager(this@management2)
                         }
                         else if(Large_food == "면 및 만두"){
                             Middel_food_list = mutableListOf<String>("선택","면", "만두")
@@ -167,7 +157,7 @@ class Management1Activity : AppCompatActivity() {
                         }
 
                         // 스피너에 추가된 중분류가 보이도록 설정
-                        val middle_food_adapter = ArrayAdapter(this@Management1Activity, android.R.layout.simple_list_item_1,Middel_food_list)
+                        val middle_food_adapter = ArrayAdapter(this@management2, android.R.layout.simple_list_item_1,Middel_food_list)
                         binding.middleMenuSpinner.adapter = middle_food_adapter
                         // RecyclerView 활용을 위한 코드
 //                        val recycler = findViewById<RecyclerView>(R.id.foodlist)
@@ -213,60 +203,20 @@ class Management1Activity : AppCompatActivity() {
             val rv2Adapter = RV2Adapter(items2)
             recycler2.adapter = rv2Adapter
 
-            recycler2.layoutManager = LinearLayoutManager(this@Management1Activity)
+            recycler2.layoutManager = LinearLayoutManager(this@management2)
         }
 
+        var uid = "user20"
 
         // DB 초기화 + 식단 저장 + 화면 전환(management1으로)
         binding.SettingFinBtn.setOnClickListener{
-//            db.dao().deleteAllUsers()
-
-//            var uid = AutoLogin.getUserId(this)
-//            val user_choice_time = intent.getStringExtra("time")
-
-//            server.requestMng(uid, user_choice_time.toString(), 123)
-//                .enqueue(object : Callback<Join> {
-//                    override fun onFailure(call: Call<Join>, t: Throwable) {
-//                        Log.d("실패", "정보: $uid, $user_choice_time")
-//                    }
-//
-//                    override fun onResponse(call: Call<Join>, response: Response<Join>) {
-//                        val serverCheck = response.body()
-//                        Log.d("뭐지?", "코드: ${serverCheck?.code}")
-//                        if(serverCheck?.code==200){
-////                            val recycler = findViewById<RecyclerView>(R.id.finallist)
-////                            val rvAdapter = RVAdapter(items2)
-////                            recycler.adapter = rvAdapter
-////
-////                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
-//
-//                            val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
-//                            nextintent.putExtra("userFoodList", items2.toString())
-//                            nextintent.putExtra("userTime", user_choice_time)
-//                            Log.d("식단 시간 확인", user_choice_time.toString())
-//                            Log.d("성공!", "정보: $uid, $user_choice_time, $items2")
-//                            items2.clear()
-//                            startActivity(nextintent)
-//                        }
-//                        else{
-//                            Log.d("뭐지?", "else : ${response.body()}")
-//                            Toast.makeText(this@Management1Activity, "실패! $serverCheck.code", Toast.LENGTH_LONG).show()
-//                        }
-//                    }
-//                })
-
-            val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
-//            nextintent.putExtra("userFoodList", items2.toString())
-//            nextintent.putExtra("userTime", user_choice_time)
-//            Log.d("식단 시간 확인", user_choice_time.toString())
-//            Log.d("성공!", "정보: $uid, $user_choice_time, $user_choice_date, $items2")
+            val nextintent = Intent(this@management2,SettingActivity::class.java)
             nextintent.putExtra("List", items2.toString())
-            nextintent.putExtra("time", "아침")
-
-            startActivity(nextintent)
+            nextintent.putExtra("time", "점심")
 
             items2.clear()
             db.dao().deleteAllUsers()
+            startActivity(nextintent)
         }
     }
 }

@@ -12,6 +12,12 @@ interface DAO {
     @Query("select title from entity")
     fun getTitle(): List<String>
 
+//    @Query("select title from entity WHERE date =:date and time =:time")
+//    fun getDTtitle(date:String, time:String): String
+//
+//    @Query("select title from entity WHERE time =: time")
+//    fun getALL(): String
+
     @Insert
     fun insert(entity: Entity)
 
@@ -24,6 +30,9 @@ interface DAO {
     @Query("DELETE FROM entity WHERE title =:foodList")
     fun deleteUserByName(foodList : String)
 
-    @Query("DELETE FROM entity")
+    @Query("DELETE FROM entity WHERE time =''")
     fun deleteAllUsers()
+
+    @Query("DELETE FROM entity")
+    fun deleteAll()
 }

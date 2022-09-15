@@ -17,6 +17,14 @@ class UserRepository(private val DAO: DAO) {
         DAO.deleteAllUsers()
     }
 
+//    suspend fun getDTtitle(){
+//        DAO.getDTtitle(date = , time = )
+//    }
+//
+//    suspend fun getALL(time:String){
+//        DAO.getALL(time)
+//    }
+
     suspend fun deleteUserByName(foodList:String){
         DAO.deleteUserByName(foodList)
     }
