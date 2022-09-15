@@ -12,6 +12,7 @@ import androidx.room.Room
 import com.example.menugen.databinding.ActivityInfoBinding
 import com.example.menugen.databinding.ActivityRecommendBinding
 import com.example.menugen.databinding.ActivitySettingBinding
+import java.time.LocalDate
 import java.util.*
 
 
@@ -19,6 +20,15 @@ class SettingActivity : AppCompatActivity() {
 
     // 데이터 바인딩
     private lateinit var binding: ActivitySettingBinding
+
+    // 식단 관리 시 아침/점심/저녁 알림 변수
+    var time:String = ""
+
+    // 오늘 날짜를 담을 변수
+    var date:LocalDate = LocalDate.now()
+    // 사용자가 캘린더로 바꿀 날짜에 대한 변수
+    var changeDate:String = ""
+    var strDate = date.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +53,11 @@ class SettingActivity : AppCompatActivity() {
         }
 
 
-        // 식단 관리 시 아침/점심/저녁 알림 변수
-        var time:String = ""
-
-
         // 캘린더 로드 (달력버튼을 눌러 날짜별 설정 -> 날짜 선택 시 각 날짜의 식단 다르게 보여주는 기능 추가 필요)
         binding.btnCalendar.setOnClickListener {
             DatePickerDialog(this, DatePickerDialog.OnDateSetListener{ datePicker, y, m, d ->
-                binding.btnCalendar.text = "$y-${m+1}-$d"
+                changeDate = "$y-${m+1}-$d"
+                binding.btnCalendar.text = changeDate
             }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
         }
 
@@ -58,6 +65,11 @@ class SettingActivity : AppCompatActivity() {
             time = "아침"
             val intent = Intent(this, Management1Activity::class.java)
             intent.putExtra("time", time)
+            if(changeDate==""){
+                intent.putExtra("date", strDate)
+            }else{
+                intent.putExtra("date", changeDate)
+            }
             startActivity(intent)
         }
 
@@ -65,6 +77,11 @@ class SettingActivity : AppCompatActivity() {
             time = "점심"
             val intent = Intent(this, Management1Activity::class.java)
             intent.putExtra("time", time)
+            if(changeDate==""){
+                intent.putExtra("date", strDate)
+            }else{
+                intent.putExtra("date", changeDate)
+            }
             startActivity(intent)
         }
 
@@ -72,6 +89,11 @@ class SettingActivity : AppCompatActivity() {
             time = "저녁"
             val intent = Intent(this, Management1Activity::class.java)
             intent.putExtra("time", time)
+            if(changeDate==""){
+                intent.putExtra("date", strDate)
+            }else{
+                intent.putExtra("date", changeDate)
+            }
             startActivity(intent)
         }
 

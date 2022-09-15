@@ -72,7 +72,10 @@ class Management1Activity : AppCompatActivity() {
         ).allowMainThreadQueries().build()
 
         // 사용자가 선택한 식단의 시간대가 아침/점심/저녁 중 어느것인지에 대한 정보가 담긴 변수
-        val user_choice_time = intent.getStringExtra("time")
+        val time = intent.getStringExtra("time")
+        var user_choice_time = time.toString()
+        val date = intent.getStringExtra("date")
+        var user_choice_date = date.toString()
 
         // 처음 대분류 & 중분류에 들어갈 음식들
         var Large_food = ""
@@ -189,7 +192,7 @@ class Management1Activity : AppCompatActivity() {
         // 사용자가 음식 목록에서 음식을 추가했을 때
         if (f_list != null){
 //            final_list = f_list.toString()
-            db.dao().insert(Entity(f_list))
+            db.dao().insert(Entity(f_list, user_choice_date, user_choice_time))
             Log.d("DB 확인", "추가: ${db?.dao()?.getTitle().toString()}")
         }
 
@@ -237,41 +240,49 @@ class Management1Activity : AppCompatActivity() {
 
         // DB 초기화 + 식단 저장 + 화면 전환(management1으로)
         binding.SettingFinBtn.setOnClickListener{
-            db.dao().deleteAllUsers()
+//            db.dao().deleteAllUsers()
 
 //            var uid = AutoLogin.getUserId(this)
 //            val user_choice_time = intent.getStringExtra("time")
 
-            server.requestMng(uid, user_choice_time.toString(), 123)
-                .enqueue(object : Callback<Join> {
-                    override fun onFailure(call: Call<Join>, t: Throwable) {
-                        Log.d("실패", "정보: $uid, $user_choice_time")
-                    }
-
-                    override fun onResponse(call: Call<Join>, response: Response<Join>) {
-                        val serverCheck = response.body()
-                        Log.d("뭐지?", "코드: ${serverCheck?.code}")
-                        if(serverCheck?.code==200){
-//                            val recycler = findViewById<RecyclerView>(R.id.finallist)
-//                            val rvAdapter = RVAdapter(items2)
-//                            recycler.adapter = rvAdapter
+//            server.requestMng(uid, user_choice_time.toString(), 123)
+//                .enqueue(object : Callback<Join> {
+//                    override fun onFailure(call: Call<Join>, t: Throwable) {
+//                        Log.d("실패", "정보: $uid, $user_choice_time")
+//                    }
 //
-//                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+//                    override fun onResponse(call: Call<Join>, response: Response<Join>) {
+//                        val serverCheck = response.body()
+//                        Log.d("뭐지?", "코드: ${serverCheck?.code}")
+//                        if(serverCheck?.code==200){
+////                            val recycler = findViewById<RecyclerView>(R.id.finallist)
+////                            val rvAdapter = RVAdapter(items2)
+////                            recycler.adapter = rvAdapter
+////
+////                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+//
+//                            val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
+//                            nextintent.putExtra("userFoodList", items2.toString())
+//                            nextintent.putExtra("userTime", user_choice_time)
+//                            Log.d("식단 시간 확인", user_choice_time.toString())
+//                            Log.d("성공!", "정보: $uid, $user_choice_time, $items2")
+//                            items2.clear()
+//                            startActivity(nextintent)
+//                        }
+//                        else{
+//                            Log.d("뭐지?", "else : ${response.body()}")
+//                            Toast.makeText(this@Management1Activity, "실패! $serverCheck.code", Toast.LENGTH_LONG).show()
+//                        }
+//                    }
+//                })
 
-                            val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
-                            nextintent.putExtra("userFoodList", items2.toString())
-                            nextintent.putExtra("userTime", user_choice_time)
-                            Log.d("식단 시간 확인", user_choice_time.toString())
-                            Log.d("성공!", "정보: $uid, $user_choice_time, $items2")
-                            items2.clear()
-                            startActivity(nextintent)
-                        }
-                        else{
-                            Log.d("뭐지?", "else : ${response.body()}")
-                            Toast.makeText(this@Management1Activity, "실패! $serverCheck.code", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                })
+            val nextintent = Intent(this@Management1Activity,SettingActivity::class.java)
+            nextintent.putExtra("userFoodList", items2.toString())
+            nextintent.putExtra("userTime", user_choice_time)
+            Log.d("식단 시간 확인", user_choice_time.toString())
+            Log.d("성공!", "정보: $uid, $user_choice_time, $user_choice_date, $items2")
+            items2.clear()
+            startActivity(nextintent)
         }
     }
 }
