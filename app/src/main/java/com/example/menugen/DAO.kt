@@ -33,6 +33,9 @@ interface DAO {
     @Query("DELETE FROM entity WHERE time =''")
     fun deleteAllUsers()
 
+    @Query("DELETE FROM entity WHERE time =:time")
+    fun deleteFood(time:String)
+
     @Query("DELETE FROM entity")
     fun deleteAll()
 }

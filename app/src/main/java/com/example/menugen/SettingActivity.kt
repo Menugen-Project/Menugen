@@ -94,6 +94,23 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        binding.btn1.setOnClickListener{
+            val intent = Intent(this, SettingActivity::class.java)
+            db.dao().deleteFood("아침")
+            startActivity(intent)
+        } // 아침 식단 X 버튼 클릭 시
+        binding.btn2.setOnClickListener{
+            val intent = Intent(this, SettingActivity::class.java)
+            db.dao().deleteFood("점심")
+            startActivity(intent)
+        } // 점심 식단 X 버튼 클릭 시
+        binding.btn3.setOnClickListener{
+            val intent = Intent(this, SettingActivity::class.java)
+            db.dao().deleteFood("저녁")
+            startActivity(intent)
+        } // 저녁녁 식단 X 버 클릭 시
+
         // 하단바 각각 액티비티로 이동
         binding.btnRecommend.setOnClickListener {
             val intent = Intent(this, Recommend::class.java)

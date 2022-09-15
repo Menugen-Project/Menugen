@@ -63,3 +63,13 @@ public interface ManageFoodList{
         @Field("break_energy") breakEnergy: Int
     ) : Call<Join>
 }
+
+// 식단 검색 시
+public interface SearchFoodList{
+    @FormUrlEncoded
+    @POST("/foods/search")
+    fun requestSearch(
+        @Field("lr_ctg") lr_ctg:String,
+        @Field("md_ctg") md_ctg:String
+    ) : Call<Join>
+}

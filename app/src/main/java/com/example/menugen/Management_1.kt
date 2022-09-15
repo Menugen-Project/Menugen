@@ -25,7 +25,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Management1Activity : AppCompatActivity() {
+class Management1Activity  : AppCompatActivity() {
     // 데이터 바인딩
     private lateinit var binding: ActivityManagement1Binding
     private lateinit var adapter: RVAdapter
@@ -79,12 +79,15 @@ class Management1Activity : AppCompatActivity() {
         var Large_food = ""
         val Large_food_list = mutableListOf<String>("선택", "밥", "면 및 만두", "국(탕)", "찌개", "찜", "조림", "구이", "전", "튀김", "볶음", "무침", "김치", "떡",
             "우유 및 유제품", "음료", "젓갈", "죽", "회", "과자 및 빵", "술", "원재료", "장","절임")
+        var Middle_food = ""
+        var Middle_food_list = mutableListOf<String>()
         // 추후 서버에서 받아오는 데이터로 변경 예정
         // 추가부분은 반드시 아래 ArrayAdapter보다 위에 있어야 함
 
         val food_adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, Large_food_list)
         binding.largeMenuSpinner.adapter = food_adapter
 
+        // 대분류 스피너
         binding.largeMenuSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -99,13 +102,99 @@ class Management1Activity : AppCompatActivity() {
                     else if(position != 0){
                         Large_food = Large_food_list[position].toString()
                         // Toast.makeText(this@Management1Activity, Large_food, Toast.LENGTH_SHORT).show()
-
-                        // 중분류를 담을 변수
-                        var Middel_food_list = mutableListOf<String>()
-
                         if(Large_food == "밥"){
-                            Middel_food_list = mutableListOf<String>("선택","쌀밥", "잡곡밥", "채소밥", "비빔밥", "덮밥", "김(초)밥")
+                            Middle_food_list = mutableListOf<String>("선택","쌀밥", "잡곡밥", "채소밥", "비빔밥", "덮밥", "김(초)밥")
 
+//                            items.clear()
+//                            items.add("감자밥")
+//                            items.add("검은콩밥")
+//                            items.add("계란덮밥")
+//                            // adapter.notifyDataSetChanged()
+//
+//                            // RecyclerView 활용을 위한 코드
+//                            val recycler = findViewById<RecyclerView>(R.id.foodlist)
+//                            val rvAdapter = RVAdapter(items)
+//                            recycler.adapter = rvAdapter
+//
+//                            recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+                        }
+                        else if(Large_food == "면 및 만두"){
+                            Middle_food_list = mutableListOf<String>("선택","면", "만두")
+                        } else if(Large_food == "국(탕)"){
+                            Middle_food_list = mutableListOf<String>("선택","맑은국", "된장국", "곰국 및 탕", "냉국")
+                        } else if(Large_food == "찌개"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류찌개", "육류찌개", "된장찌개", "전골", "기타찌개")
+                        } else if(Large_food == "찜"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류찜", "육류찜", "채소류찜", "기타 찜")
+                        } else if(Large_food == "조림"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류조림", "육류 및 난류조림", "채소류조림", "기타 조림")
+                        } else if(Large_food == "구이"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류구이", "육류구이","기타 구이")
+                        } else if(Large_food == "전"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류전", "육류전","채소류전", "기타 전")
+                        } else if(Large_food == "튀김"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류튀김", "육류튀김","채소류튀김", "기타 튀김")
+                        } else if(Large_food == "볶음"){
+                            Middle_food_list = mutableListOf<String>("선택","어패류볶음", "육류 및 난류볶음","채소 및 해조류볶음", "곡류 및 두류볶음", "기타 볶음")
+                        } else if(Large_food == "무침"){
+                            Middle_food_list = mutableListOf<String>("선택","숙채", "어패류무침","육류무침", "생채(샐러드)")
+                        } else if(Large_food == "김치"){
+                            Middle_food_list = mutableListOf<String>("선택","김치류")
+                        } else if(Large_food == "떡"){
+                            Middle_food_list = mutableListOf<String>("선택","떡류")
+                        } else if(Large_food == "우유 및 유제품"){
+                            Middle_food_list = mutableListOf<String>("선택","우유 및 유제품류")
+                        } else if(Large_food == "음료"){
+                            Middle_food_list = mutableListOf<String>("선택","과채", "기타 음료")
+                        } else if(Large_food == "젓갈"){
+                            Middle_food_list = mutableListOf<String>("선택","젓갈류")
+                        } else if(Large_food == "죽"){
+                            Middle_food_list = mutableListOf<String>("선택","죽류")
+                        } else if(Large_food == "회"){
+                            Middle_food_list = mutableListOf<String>("선택","어패회", "육류회", "채소류회")
+                        } else if(Large_food == "과자 및 빵"){
+                            Middle_food_list = mutableListOf<String>("선택","빵", "과자")
+                        } else if(Large_food == "술"){
+                            Middle_food_list = mutableListOf<String>("선택","주류")
+                        } else if(Large_food == "원재료"){
+                            Middle_food_list = mutableListOf<String>("선택","감자 및 전분", "견과 및 종실", "과일 및 과일가공품", "난류", "당류", "두류", "소스",
+                                "어패류 및 수산물가공품", "유지류", "조리가공식품", "조미료", "채소", "해조류")
+                        } else if(Large_food == "장"){
+                            Middle_food_list = mutableListOf<String>("선택","양념")
+                        } else if(Large_food == "절임"){
+                            Middle_food_list = mutableListOf<String>("선택","장아찌", "절임류")
+                        }
+
+                        // 스피너에 추가된 중분류가 보이도록 설정
+                        val middle_food_adapter = ArrayAdapter(this@Management1Activity, android.R.layout.simple_list_item_1,Middle_food_list)
+                        binding.middleMenuSpinner.adapter = middle_food_adapter
+                        // RecyclerView 활용을 위한 코드
+//                        val recycler = findViewById<RecyclerView>(R.id.foodlist)
+//                        val rvAdapter = RVAdapter(items)
+//                        recycler.adapter = rvAdapter
+//
+//                        recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
+                    }
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+
+        // 중분류 스피너
+        binding.middleMenuSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (position == 0) {
+                        // Toast.makeText(this@Management1Activity, "대분류를 선택해주세요", Toast.LENGTH_SHORT).show()
+                    } else if (position != 0) {
+                        Middle_food = Middle_food_list[position].toString()
+
+
+                        if(Middle_food == "쌀밥"){
                             items.clear()
                             items.add("감자밥")
                             items.add("검은콩밥")
@@ -119,67 +208,10 @@ class Management1Activity : AppCompatActivity() {
 
                             recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
                         }
-                        else if(Large_food == "면 및 만두"){
-                            Middel_food_list = mutableListOf<String>("선택","면", "만두")
-                        } else if(Large_food == "국(탕)"){
-                            Middel_food_list = mutableListOf<String>("선택","맑은국", "된장국", "곰국 및 탕", "냉국")
-                        } else if(Large_food == "찌개"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류찌개", "육류찌개", "된장찌개", "전골", "기타찌개")
-                        } else if(Large_food == "찜"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류찜", "육류찜", "채소류찜", "기타 찜")
-                        } else if(Large_food == "조림"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류조림", "육류 및 난류조림", "채소류조림", "기타 조림")
-                        } else if(Large_food == "구이"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류구이", "육류구이","기타 구이")
-                        } else if(Large_food == "전"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류전", "육류전","채소류전", "기타 전")
-                        } else if(Large_food == "튀김"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류튀김", "육류튀김","채소류튀김", "기타 튀김")
-                        } else if(Large_food == "볶음"){
-                            Middel_food_list = mutableListOf<String>("선택","어패류볶음", "육류 및 난류볶음","채소 및 해조류볶음", "곡류 및 두류볶음", "기타 볶음")
-                        } else if(Large_food == "무침"){
-                            Middel_food_list = mutableListOf<String>("선택","숙채", "어패류무침","육류무침", "생채(샐러드)")
-                        } else if(Large_food == "김치"){
-                            Middel_food_list = mutableListOf<String>("선택","김치류")
-                        } else if(Large_food == "떡"){
-                            Middel_food_list = mutableListOf<String>("선택","떡류")
-                        } else if(Large_food == "우유 및 유제품"){
-                            Middel_food_list = mutableListOf<String>("선택","우유 및 유제품류")
-                        } else if(Large_food == "음료"){
-                            Middel_food_list = mutableListOf<String>("선택","과채", "기타 음료")
-                        } else if(Large_food == "젓갈"){
-                            Middel_food_list = mutableListOf<String>("선택","젓갈류")
-                        } else if(Large_food == "죽"){
-                            Middel_food_list = mutableListOf<String>("선택","죽류")
-                        } else if(Large_food == "회"){
-                            Middel_food_list = mutableListOf<String>("선택","어패회", "육류회", "채소류회")
-                        } else if(Large_food == "과자 및 빵"){
-                            Middel_food_list = mutableListOf<String>("선택","빵", "과자")
-                        } else if(Large_food == "술"){
-                            Middel_food_list = mutableListOf<String>("선택","주류")
-                        } else if(Large_food == "원재료"){
-                            Middel_food_list = mutableListOf<String>("선택","감자 및 전분", "견과 및 종실", "과일 및 과일가공품", "난류", "당류", "두류", "소스",
-                                "어패류 및 수산물가공품", "유지류", "조리가공식품", "조미료", "채소", "해조류")
-                        } else if(Large_food == "장"){
-                            Middel_food_list = mutableListOf<String>("선택","양념")
-                        } else if(Large_food == "절임"){
-                            Middel_food_list = mutableListOf<String>("선택","장아찌", "절임류")
-                        }
-
-                        // 스피너에 추가된 중분류가 보이도록 설정
-                        val middle_food_adapter = ArrayAdapter(this@Management1Activity, android.R.layout.simple_list_item_1,Middel_food_list)
-                        binding.middleMenuSpinner.adapter = middle_food_adapter
-                        // RecyclerView 활용을 위한 코드
-//                        val recycler = findViewById<RecyclerView>(R.id.foodlist)
-//                        val rvAdapter = RVAdapter(items)
-//                        recycler.adapter = rvAdapter
-//
-//                        recycler.layoutManager = LinearLayoutManager(this@Management1Activity)
                     }
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-
 
         // 음식 목록에서 사용자가 선택한 음식에 대한 정보
         val f_list = intent.getStringExtra("list")
