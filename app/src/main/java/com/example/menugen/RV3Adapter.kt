@@ -63,6 +63,7 @@ package com.example.menugen
 //    }
 //}
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -97,6 +98,13 @@ class RV3Adapter(private val context: Context) : RecyclerView.Adapter<RV3Adapter
             largeMenuTv.text = item.largeMenuName
             smallMenuTv.text = item.smallMenuName
             Glide.with(itemView).load(item.photo).into(imgProfile)
+
+            itemView.setOnClickListener {
+                Intent(context, EvaluationActivity::class.java).apply {
+//                    putExtra("data", item)
+//                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { context.startActivity(this) }
+            }
 
         }
     }

@@ -97,9 +97,9 @@
                             android:layout_height="wrap_content"
                             android:layout_columnSpan="4"
                             android:layout_gravity="fill"
-                            android:background="#CCF4E2"
+                            android:background="#DCF8EB"
                             android:gravity="center"
-                            android:text="2022-09-15(목) ~ 2022-09-15(목)"
+                            android:text="2022-09-16(금)"
                             android:textSize="14dp" />
 
                         <TextView
@@ -115,6 +115,7 @@
                         <TextView
                             android:layout_width="75dp"
                             android:layout_height="30dp"
+                            android:layout_columnSpan="2"
                             android:layout_gravity="fill"
                             android:background="#EFE4E8"
                             android:gravity="center"
@@ -124,32 +125,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_columnSpan="2"
                             android:layout_gravity="fill"
                             android:background="#ACCEDD"
                             android:gravity="center"
-                            android:text="622"
+                            android:text="1151"
                             android:textSize="14dp" />
 
                         <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="fill"
-                            android:background="#EFE4E8"
-                            android:gravity="center"
-                            android:text="변경중량"
-                            android:textSize="16dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="fill"
-                            android:background="#ACCEDD"
-                            android:gravity="center"
-                            android:text="622"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:layout_rowSpan="4"
                             android:layout_gravity="fill"
@@ -162,7 +146,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_gravity="fill"
-                            android:background="#F4DDD5"
+                            android:background="#E1B9C7"
                             android:gravity="center"
                             android:text="열량(kcal)"
                             android:textSize="12dp" />
@@ -174,7 +158,7 @@
                             android:layout_gravity="fill"
                             android:background="#C2E1EF"
                             android:gravity="center"
-                            android:text="510.5"
+                            android:text="848.9"
                             android:textSize="14dp" />
 
                         <TextView
@@ -193,7 +177,7 @@
                             android:layout_gravity="fill"
                             android:background="#ACCEDD"
                             android:gravity="center"
-                            android:text="65"
+                            android:text="61.4"
                             android:textSize="14dp" />
 
                         <TextView
@@ -212,7 +196,7 @@
                             android:layout_gravity="fill"
                             android:background="#C2E1EF"
                             android:gravity="center"
-                            android:text="30.9"
+                            android:text="53.4"
                             android:textSize="14dp" />
 
                         <TextView
@@ -231,7 +215,7 @@
                             android:layout_gravity="fill"
                             android:background="#ACCEDD"
                             android:gravity="center"
-                            android:text="13.6"
+                            android:text="41.8"
                             android:textSize="14dp" />
 
 
@@ -241,7 +225,7 @@
                 </LinearLayout>
 
 
-                <!--                    식단 평가란-->
+                <!--                    식단 상세영양소란-->
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -255,45 +239,162 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:text="식단 평가"
+                        android:text="식단 상세 영양소"
                         android:textColor="#ffffff"
                         android:textSize="15dp" />
                 </androidx.cardview.widget.CardView>
 
+                <!--식단 정보란 내용 박스-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:background="@drawable/edge"
                     android:orientation="horizontal">
 
-                    <!--                        사용자가 선택한 음식이 뜨는 곳-->
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/finallist"
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <!--                        <TextView-->
-                    <!--                            android:id="@+id/finalfood"-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:layout_margin="5dp"-->
-                    <!--                            android:textSize="20sp"/>-->
+                        android:layout_height="wrap_content"
+                        android:columnCount="4"
+                        android:orientation="horizontal"
+                        android:rowCount="4"
+                        android:stretchColumns="*">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_columnSpan="2"
+                            android:layout_gravity="fill"
+                            android:background="#EEFBEF"
+                            android:gravity="center"
+                            android:text="메뉴"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_columnSpan="2"
+                            android:layout_gravity="fill"
+                            android:background="#DCF8EB"
+                            android:gravity="center"
+                            android:text="쌀밥"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="fill"
+                            android:background="#D9E6D9"
+                            android:gravity="center"
+                            android:text="총 당류(g)"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="fill"
+                            android:background="#EFE4E8"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="fill"
+                            android:background="#D9E6D9"
+                            android:gravity="center"
+                            android:text="총 포화지방산(g)"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="fill"
+                            android:background="#EFE4E8"
+                            android:gravity="center"
+                            android:text="0.1"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="fill"
+                            android:background="#D9E6D9"
+                            android:gravity="center"
+                            android:text="총 지방산(g)"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="fill"
+                            android:background="#EFE4E8"
+                            android:gravity="center"
+                            android:text="0.2"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="fill"
+                            android:background="#D9E6D9"
+                            android:gravity="center"
+                            android:text="칼슘(mg)"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="fill"
+                            android:background="#EFE4E8"
+                            android:gravity="center"
+                            android:text="1.8"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="fill"
+                            android:background="#D9E6D9"
+                            android:gravity="center"
+                            android:text="나트륨(mg)"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="fill"
+                            android:background="#EFE4E8"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="fill"
+                            android:background="#D9E6D9"
+                            android:gravity="center"
+                            android:text="콜레스테롤(mg)"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="fill"
+                            android:background="#EFE4E8"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="16dp" />
+
+
+                    </GridLayout>
+
+
                 </LinearLayout>
 
-                <!--                식단 저장 버튼-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <!--                식단 저장 버튼-->
-                    <Button
-                        android:id="@+id/SettingFinBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="15dp"
-                        android:text="식단 저장하기" />
-                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
