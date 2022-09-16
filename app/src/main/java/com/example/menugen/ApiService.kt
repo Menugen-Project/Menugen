@@ -60,7 +60,7 @@ public interface ManageFoodList{
     fun requestMng(
         @Field("userId") id:String,
         @Field("date") time:String,
-        @Field("break_energy") breakEnergy: Int
+        @Field("break_diet") breakDiet:List<String>
     ) : Call<Join>
 }
 

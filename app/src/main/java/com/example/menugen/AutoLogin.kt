@@ -47,6 +47,7 @@ object AutoLogin {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, android.content.Context.MODE_PRIVATE)
         return prefs.getString("MY_NAME", "").toString()
     }
+
     fun setUserSerial(context: Context, input: String){
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()

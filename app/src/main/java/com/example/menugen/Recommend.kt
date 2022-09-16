@@ -24,6 +24,7 @@ class Recommend : AppCompatActivity() {
     lateinit var RV3Adapter: RV3Adapter
     val datas = mutableListOf<RecommendData>()
 
+    private var item = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,24 +103,95 @@ class Recommend : AppCompatActivity() {
         // var foodList = intent.getSerializableExtra("foodList") as ArrayList<String>
         // Log.d("확인", foodList.toString())
 
-//        val food1 = intent.getStringExtra("food1")
-//        val food2 = intent.getStringExtra("food2")
-//        val food3 = intent.getStringExtra("food3")
-//        val food4 = intent.getStringExtra("food4")
+        val largeFood1 = intent.getStringExtra("largeFood1")
+        val food1 = intent.getStringExtra("food1")
+        val largeFood2 = intent.getStringExtra("largeFood2")
+        val food2 = intent.getStringExtra("food2")
+        val largeFood3 = intent.getStringExtra("largeFood3")
+        val food3 = intent.getStringExtra("food3")
+        val largeFood4 = intent.getStringExtra("largeFood4")
+        val food4 = intent.getStringExtra("food4")
+
+        item.add(largeFood1.toString())
+        item.add(largeFood2.toString())
+        item.add(largeFood3.toString())
+        item.add(largeFood4.toString())
 
         RV3Adapter = RV3Adapter(this)
         rv_menu.adapter = RV3Adapter
 
         datas.apply {
-//            add(RecommendData(photo = R.drawable.rice, largeMenuName = "대분류: 밥류", smallMenuName = food1.toString()))
-//            add(RecommendData(photo = R.drawable.jjigae, largeMenuName = "대분류: 찌개류", smallMenuName = food2.toString()))
-//            add(RecommendData(photo = R.drawable.kimchi, largeMenuName = "대분류: 김치류", smallMenuName = food3.toString()))
-//            add(RecommendData(photo = R.drawable.muchim, largeMenuName = "대분류: 무침류", smallMenuName = food4.toString()))
 
-            add(RecommendData(photo = R.drawable.rice, largeMenuName = "대분류: 밥류", smallMenuName = "임시"))
-            add(RecommendData(photo = R.drawable.jjigae, largeMenuName = "대분류: 찌개류", smallMenuName = "임시"))
-            add(RecommendData(photo = R.drawable.kimchi, largeMenuName = "대분류: 김치류", smallMenuName = "임시"))
-            add(RecommendData(photo = R.drawable.muchim, largeMenuName = "대분류: 무침류", smallMenuName = "임시"))
+            var tmp = R.drawable.rice
+
+            if(item.isNotEmpty()){
+                var index = 0
+                while(index < item.size){
+                    if(item[index] == "밥류"){
+                        tmp = R.drawable.rice
+                    } else if(item[index] == "면 및 만두류"){
+                        tmp = R.drawable.noodle
+                    } else if(item[index] == "국(탕)류"){
+                        tmp = R.drawable.tang
+                    } else if(item[index] == "찌개류"){
+                        tmp = R.drawable.jjigae
+                    } else if(item[index] == "찜류"){
+                        tmp = R.drawable.jjim
+                    } else if(item[index] == "조림류"){
+                        tmp = R.drawable.jorim
+                    } else if(item[index] == "구이류"){
+                        tmp = R.drawable.gui
+                    } else if(item[index] == "전류"){
+                        tmp = R.drawable.jeon
+                    } else if(item[index] == "튀김류"){
+                        tmp = R.drawable.fried
+                    } else if(item[index] == "볶음류"){
+                        tmp = R.drawable.bokkeum
+                    } else if(item[index] == "무침류"){
+                        tmp = R.drawable.muchim
+                    } else if(item[index] == "김치류"){
+                        tmp = R.drawable.kimchi
+                    } else if(item[index] == "떡류"){
+                        tmp = R.drawable.tteok
+                    } else if(item[index] == "우유 및 유제품류"){
+                        tmp = R.drawable.milk
+                    } else if(item[index] == "음료류"){
+                        tmp = R.drawable.drink
+                    } else if(item[index] == "젓갈류"){
+                        tmp = R.drawable.jeotgal
+                    } else if(item[index] == "죽류"){
+                        tmp = R.drawable.juk
+                    } else if(item[index] == "회류"){
+                        tmp = R.drawable.sashimi
+                    } else if(item[index] == "과자 및 빵류"){
+                        tmp = R.drawable.cookie
+                    } else if(item[index] == "주류"){
+                        tmp = R.drawable.alcohol
+                    } else if(item[index] == "원재료"){
+                        tmp = R.drawable.raw
+                    } else if(item[index] == "장류"){
+                        tmp = R.drawable.jang
+                    } else if(item[index] == "절임류"){
+                        tmp = R.drawable.jerim
+                    }
+
+                    if(index == 0){
+                        add(RecommendData(photo = tmp, largeMenuName = "$largeFood1", smallMenuName = food1.toString()))
+                    }else if(index == 1){
+                        add(RecommendData(photo = tmp, largeMenuName = "$largeFood2", smallMenuName = food2.toString()))
+                    }else if(index == 2){
+                        add(RecommendData(photo = tmp, largeMenuName = "$largeFood3", smallMenuName = food3.toString()))
+                    }else if(index == 3){
+                        add(RecommendData(photo = tmp, largeMenuName = "$largeFood4", smallMenuName = food4.toString()))
+                    }
+
+                    index++
+                }
+            }
+//            add(RecommendData(photo = tmp, largeMenuName = "$largeFood1", smallMenuName = food1.toString()))
+//            add(RecommendData(photo = tmp, largeMenuName = "$largeFood2", smallMenuName = food2.toString()))
+//            add(RecommendData(photo = tmp, largeMenuName = "$largeFood3", smallMenuName = food3.toString()))
+//            add(RecommendData(photo = tmp, largeMenuName = "$largeFood4", smallMenuName = food4.toString()))
 
             RV3Adapter.datas = datas
             RV3Adapter.notifyDataSetChanged()

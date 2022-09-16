@@ -55,20 +55,28 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
                     val userlogin = response.body()
+
+                    //추천 식단 정보가 담긴 변수 <- 서버에서 받아옴
+                    val Rfd1 = userlogin?.Rfd1.toString()
                     val fd1 = userlogin?.fd1.toString()
+                    val Rfd2 = userlogin?.Rfd2.toString()
                     val fd2 = userlogin?.fd2.toString()
+                    val Rfd3 = userlogin?.Rfd3.toString()
                     val fd3 = userlogin?.fd3.toString()
+                    val Rfd4 = userlogin?.Rfd4.toString()
                     val fd4 = userlogin?.fd4.toString()
-                    // 식단추천화면에 사용자 알러지 정보 전달
-//                    intent.putExtra("foodList", foodList)
 
                     // 가입된 계정이 아니면 X, 맞으면 다음 화면
                     if (userlogin?.code == 200) {
-                        Log.d("로그인 성공", "로그인 성공 $uid, $upw, $fd1, $fd2, $fd3, $fd4")
+                        Log.d("로그인 성공", "로그인 성공 $uid, $upw, $Rfd1, $fd1, $Rfd2, $fd2, $Rfd3, $fd3, $Rfd4, $fd4")
                         AutoLogin.setUserId(this@LoginActivity,uid)
+                        intent.putExtra("largeFood1", Rfd1)
                         intent.putExtra("food1", fd1)
+                        intent.putExtra("largeFood2", Rfd2)
                         intent.putExtra("food2", fd2)
+                        intent.putExtra("largeFood3", Rfd3)
                         intent.putExtra("food3", fd3)
+                        intent.putExtra("largeFood4", Rfd4)
                         intent.putExtra("food4", fd4)
                         startActivity(intent)
                     } else {

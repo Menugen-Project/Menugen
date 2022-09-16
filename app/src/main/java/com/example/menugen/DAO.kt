@@ -12,6 +12,12 @@ interface DAO {
     @Query("select title from entity")
     fun getTitle(): List<String>
 
+    @Query("select title from entity WHERE time=''")
+    fun getEmptyTitle(): List<String>
+
+    @Query("select title from entity WHERE time=:time and date=:date")
+    fun getTimeTitle(date:String, time: String): List<String>
+
 //    @Query("select title from entity WHERE date =:date and time =:time")
 //    fun getDTtitle(date:String, time:String): String
 //
