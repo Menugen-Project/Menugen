@@ -45,7 +45,7 @@ class Management1Activity  : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_management1)
 
         // 서버 연동코드 <---
-        val url = "http://172.25.244.84:27017/"
+        val url = "여기에 서버주소"
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())

@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // 서버 연동
-        val url = "http://172.25.244.84:27017/"
-        // val url = "http://220.149.236.48:27017/"
+        val url = "여기에 서버주소"
+        // val url = "여기에 서버주소"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
